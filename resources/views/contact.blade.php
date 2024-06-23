@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
-<section class="bg-blue-50 dark:bg-slate-800" id="contact">
+
+<section class="bg-blue-50 dark:bg-slate-800 pt-14" id="contact">
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div class="mb-4">
             <div class="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
@@ -11,9 +12,9 @@
                     class="font-heading mb-4 font-bold tracking-tight text-gray-900 dark:text-white text-3xl sm:text-5xl">
                     Get in Touch
                 </h2>
-                <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-slate-400">In hac habitasse platea
+                {{-- <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-slate-400">In hac habitasse platea
                     dictumst
-                </p>
+                </p> --}}
             </div>
         </div>
         <div class="flex items-stretch justify-center">

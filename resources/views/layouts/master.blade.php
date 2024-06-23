@@ -17,7 +17,7 @@
         <nav class="bg-gray-100 shadow-md fixed top-0 left-0 w-full ">
             <div class="container mx-auto flex justify-between items-center py-4">
                 <!-- Logo -->
-               <a href="{{url('/')}}"> <img src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true" alt="RoomKhoj Logo" class="h-16"></a>
+               <a href="{{route('home')}}"> <img src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true" alt="CarRental Logo" class="h-16"></a>
                 
                 <!-- Navigation Links -->
                 <ul class="flex gap-10 items-center">
@@ -28,19 +28,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/about" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{route('about')}}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-user'></i>
                             <span>About Us</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/services" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{route('services')}}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-list-ul'></i>
                             <span>Our Services</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('/contact')}}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{route('contact')}}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-envelope'></i>
                             <span>Contact Us</span>
                         </a>

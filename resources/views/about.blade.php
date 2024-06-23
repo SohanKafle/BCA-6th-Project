@@ -1,43 +1,78 @@
 @extends('layouts.master')
 @section('content')
 
+    <!-- Main Content -->
+    <main class="container mx-auto mt-8 p-32">
 
-<div class="header text-center pt-32">
-  <h1 class="text-4xl font-bold">About Us</h1>
-</div>
-<div class="container mx-auto px-4">
-  <div class="about-us-content flex flex-wrap items-center mb-8">
-    <div class="about-text w-full lg:w-1/2 px-4">
-      <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
-      <p class="mb-6">Our mission is to make travel seamless and personalized, one room at a time. We believe that where you stay shapes how you experience a destination. That's why we're dedicated to providing a diverse range of accommodations that suit every traveler's style, budget, and needs.</p>
+        <div class="flex flex-wrap justify-between">
+            <!-- Left Column -->
+            <div class="w-full lg:w-1/2 p-4">
+                <!-- Intro Section -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Welcome to SK Car Rental</h2>
+                    <p class="mb-6">Your reliable partner for all your car rental needs. Whether you are traveling for business or leisure, we are here to provide you with top-notch vehicles and exceptional service.</p>
+                </section>
 
-      <h2 class="text-2xl font-semibold mb-4">Why Choose Us?</h2>
-      <ul class="list-disc list-inside mb-6 space-y-2">
-        <li><strong>Diverse Selection:</strong> From cozy apartments to luxurious villas, our platform offers a wide range of accommodations to match your preferences.</li>
-        <li><strong>Ease of Use:</strong> We've designed our platform to be user-friendly and intuitive, making the booking process quick and stress-free.</li>
-        <li><strong>Trust and Safety:</strong> Your safety and security are paramount. We rigorously vet every property and host to ensure your peace of mind during your stay.</li>
-        <li><strong>Local Insights:</strong> Discover hidden gems and local recommendations from hosts who know the area like the back of their hand.</li>
-        <li><strong>Exceptional Support:</strong> Our dedicated support team is always ready to assist you, from the moment you start browsing to the end of your stay.</li>
-      </ul>
-    </div>
-    <div class="about-image w-full lg:w-1/2 px-4">
-      <img src="img/png.png" alt="Eye-Catching Image" class="rounded-lg shadow-md">
-    </div>
-  </div>
+                <!-- Mission Section -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Our Mission</h2>
+                    <p class="mb-6">At SK Car Rental, our mission is to offer our customers the best car rental experience possible with high-quality vehicles and outstanding customer service.</p>
+                </section>
 
-  <h2 class="text-2xl font-semibold mb-4">Our Story</h2>
-  <p class="mb-6">our Company  was founded by Founder's subash in Year. Fueled by a passion for travel and a vision for a more personalized accommodation experience, Founder's Name set out to create a platform that would connect travelers with unique and welcoming spaces around the world.</p>
+                <section class="mb-8">
+                  <h2 class="text-2xl font-bold mb-4">Details</h2>
+                  <p class="mb-6"><i class="fa fa-location">Gaindakot-01,Nawalpur</i></p>
+              </section>
+            </div>
 
-  <p class="mb-6">Since then, our Company  has grown into a thriving community of travelers and hosts, united by a shared love for exploration and hospitality. Our journey is fueled by the stories of every guest who finds comfort in our accommodations and every host who opens their doors to create unforgettable memories.</p>
+            <!-- Right Column -->
+            <div class="w-full lg:w-1/2 p-4">
+                <!-- Car Photo -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Our Fleet</h2>
+                    <img src="https://via.placeholder.com/600x400" alt="Car Photo" class="mx-auto shadow-lg rounded-lg">
+                </section>
 
-  <div class="join-us mb-8">
-    <h2 class="text-2xl font-semibold mb-4">Join Us</h2>
-    <p>Whether you're an avid traveler seeking your next adventure or a property owner looking to share your space with the world, Your Company Name welcomes you to our community. Experience travel like never before, one room at a time.</p>
-  </div>
+                <!-- Map Section -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Our Location</h2>
+                    <div class="w-full h-64">
+                        <iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113018.06921452699!2d84.25646975980257!3d27.72300811451673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fb6f10ab0081%3A0x11b6475201e5a810!2sGaindakot!5e0!3m2!1sen!2snp!4v1719120088167!5m2!1sen!2snp" allowfullscreen="" loading="lazy"></iframe> 
+                    </div>
+                </section>
+            </div>
+        </div>
 
-  <div class="images-container grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-    <img src="image1.jpg" alt="Our Team" class="rounded-lg shadow-md">
-    <img src="image2.jpg" alt="Our Mission" class="rounded-lg shadow-md">
-  </div>
-</div>
+        <!-- Team Section -->
+        <section class="text-center mb-8">
+            <h2 class="text-2xl font-bold mb-4">Meet Our Team</h2>
+            <div class="flex justify-center space-x-20">
+                <div class="text-center">
+                    <img src="https://via.placeholder.com/150" alt="Team Member 1" class="mx-auto shadow-lg rounded-full">
+                    <h3 class="mt-2 font-bold">Sohan kafle</h3>
+                    <p class="text-sm">CEO</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://via.placeholder.com/150" alt="Team Member 2" class="mx-auto shadow-lg rounded-full">
+                    <h3 class="mt-2 font-bold">Ganesh Adhikari</h3>
+                    <p class="text-sm">General Manager</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://via.placeholder.com/150" alt="Team Member 3" class="mx-auto shadow-lg rounded-full">
+                    <h3 class="mt-2 font-bold">Swastika Acharya</h3>
+                    <p class="text-sm">Operation Head</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2024 SK Car Rental. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
 @endsection
