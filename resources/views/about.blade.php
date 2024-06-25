@@ -1,9 +1,8 @@
 @extends('layouts.master')
 @section('content')
 
-    <!-- Main Content -->
-    <main class="container mx-auto mt-3 p-32">
-
+       <!-- Main Content -->
+       <main class="container mx-auto mt-10 p-4 lg:p-32">
         <div class="flex flex-wrap justify-between">
             <!-- Left Column -->
             <div class="w-full lg:w-1/2 p-4">
@@ -30,13 +29,13 @@
             <!-- Right Column -->
             <div class="w-full lg:w-1/2 p-4">
                 <!-- Car Photo -->
-                <section class="mb-8 ml-20">
+                <section class="mb-8">
                     <h2 class="text-2xl font-bold mb-4 text-cyan-700">Our Fleet</h2>
                     <img src="{{asset('img/Mercedes.jpg')}}" alt="Car Photo" class="mx-auto shadow-lg rounded-lg">
                 </section>
 
                 <!-- Map Section -->
-                <section class="mb-8 ml-20">
+                <section class="mb-8">
                     <h2 class="text-2xl font-bold mb-4 text-cyan-700">Our Location</h2>
                     <div class="w-full h-64">
                         <iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113018.06921452699!2d84.25646975980257!3d27.72300811451673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fb6f10ab0081%3A0x11b6475201e5a810!2sGaindakot!5e0!3m2!1sen!2snp!4v1719120088167!5m2!1sen!2snp" allowfullscreen="" loading="lazy"></iframe> 
@@ -48,18 +47,18 @@
         <!-- Team Section -->
         <section class="text-center mb-8">
             <h2 class="text-2xl font-bold mb-4 text-cyan-700">Meet Our Team</h2>
-            <div class="flex justify-center space-x-20">
-                <div class="text-center">
+            <div class="flex flex-wrap justify-center space-y-8 lg:space-y-0 lg:space-x-20">
+                <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
                     <img src="{{asset('')}}" alt="Team Member 1" class="mx-auto shadow-lg rounded-full">
-                    <h3 class="mt-2 font-bold">Sohan kafle</h3>
+                    <h3 class="mt-2 font-bold">Sohan Kafle</h3>
                     <p class="text-sm">CEO</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
                     <img src="https://via.placeholder.com/150" alt="Team Member 2" class="mx-auto shadow-lg rounded-full">
                     <h3 class="mt-2 font-bold">Ganesh Adhikari</h3>
                     <p class="text-sm">General Manager</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
                     <img src="https://via.placeholder.com/150" alt="Team Member 3" class="mx-auto shadow-lg rounded-full">
                     <h3 class="mt-2 font-bold">Swastika Acharya</h3>
                     <p class="text-sm">Operation Head</p>
@@ -68,5 +67,6 @@
         </section>
 
     </main>
+
 
 @endsection

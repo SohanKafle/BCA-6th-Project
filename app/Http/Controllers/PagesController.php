@@ -21,6 +21,11 @@ class PagesController extends Controller
         return view('contact');
     }
 
+    public function services()
+    {
+        return view('services');
+    }
+
     public function dashboard()
     {
         return view('dashboard');

@@ -11,9 +11,9 @@
     <div class="min-h-full grid grid-cols-1 md:grid-cols-2">
         <div class="relative">
             <a href="{{route('home')}}" class="absolute top-4 left-4 bg-blue-500 hover:bg-blue-900 text-white px-2 py-3 rounded-lg z-10">Go Home</a>
-            <img src="{{asset('img/car.png')}}" alt="Login Image" class="w-full object-cover h-full shadow-lg">
+            <img src="{{asset('img/car.png')}}" alt="Login Image" class="w-full h-full object-cover shadow-lg">
         </div>
-        <div class="flex items-center justify-center py-10 md:py-0">
+        <div class="flex items-center justify-center">
             <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 class="font-bold text-2xl mb-5 text-center">Login to SK Car Rental</h2>
                 <form action="{{route('login')}}" method="POST">
@@ -22,7 +22,7 @@
                     <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Password" name="password" required>
                     <div class="flex items-center justify-between mt-4">
                         <label class="inline-flex items-center">
-                            <input type="checkbox" class="form-checkbox text-blue-500 rounded" name="remember">
+                            <input type="checkbox" class="form-checkbox rounded text-blue-500" name="remember">
                             <span class="ml-2 text-gray-700">Remember Me</span>
                         </label>
                         <a href="{{route('password.request')}}" class="text-blue-500">Forgot Password?</a>
