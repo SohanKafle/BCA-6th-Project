@@ -35,7 +35,7 @@
                     </li>
                     <li>
                         <a href="{{route('services')}}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
-                            <i class='bx bx-list-ul'></i>
+                            <i class='bx bx-cog'></i>
                             <span>Our Services</span>
                         </a>
                     </li>
