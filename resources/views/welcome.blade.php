@@ -4,7 +4,7 @@
 
 <!-- Home -->
 <section class="home container mx-auto pt-16" id="home">
-    <div class="bg-sec-100 ">
+    <div class="bg-purple-100 ">
         {{-- hero --}}
         <div class="flex justify-center md:py-28 py-12 mx-auto max-w-screen-xl">
             <div class="flex  flex-col justify-center md:w-3/5  mx-12 md:ms-20 md:mx-0">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="md:w-3/5 hidden md:block">
-                <img loading="lazy" src="{{ asset('img/Ford_Mustang.jpg') }}" alt="home car">
+                <img loading="lazy" src="{{ asset('img/Ford_Mustang.jpg') }}" class="rounded-[500px] w-11/12 h-auto mx-6" alt="home car">
             </div>
 
         </div>
@@ -63,7 +63,7 @@
     </div>
     <div class="properties-container flex flex-wrap gap-8">
         <div class="box p-4 bg-white rounded-lg shadow-md">
-            <img src="img/room.jpg" alt="car image" class="w-full h-48 object-cover rounded-t-lg">
+            <img src="" alt="car image" class="w-full h-48 object-cover rounded-t-lg">
             <div class="p-4">
                 <h3 class="text-xl font-semibold mb-2">Car no:</h3>
                 <div class="content">
