@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +21,13 @@
             <h2 class="ml-2 text-2xl">Name: John Doe</h2>
             <h3 class="ml-2 text-lg">Email: john.doe@example.com</h3>
             <h3 class="ml-2 text-lg">Phone Number: 123-456-7890</h3>
-            <h3 class="ml-2 text-lg">D.O.B: 01/01/1990</h3>
         </div>
         <div class="text-center mt-5">
             <a href="editprofile.php" class="inline-block py-2 px-4 bg-gray-600 text-white rounded-full hover:bg-blue-500 transition-colors">Edit Profile</a>
         </div>
 
         <div class="text-center mt-5">
-            <a href="readdata.php" class="inline-block py-2 px-4 bg-gray-600 text-white rounded-full hover:bg-blue-500 transition-colors">Back</a>
+            <a href="{{route('users.index')}}" class="inline-block py-2 px-4 bg-gray-600 text-white rounded-full hover:bg-blue-500 transition-colors">Back</a>
         </div>
     </div>
 </body>
