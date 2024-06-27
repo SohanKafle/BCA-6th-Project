@@ -131,17 +131,17 @@
 </section>
 
 <!-- About -->
-<section class="about container mx-auto p-8" id="about">
-    <div class="about-img mb-4">
-        <img src="{{ asset('img/car3.jpg') }}" alt="About Image">
-    </div>
-    <div class="about-text">
-        <span class="text-blue-600">About Us</span>
-        <h2 class="text-3xl font-bold">We Provide The Best <br>Cars For You !</h2>
-        <p> Get yourself a best quality car at a best rate quoted anytime.</p>
-        <p>We are The Nepal's Largest Car Rental Company...</p>
-        <a href="{{ url('/about') }}" class="btn bg-blue-500 text-white py-2 px-4 rounded">Read More </a>
+<section class="about container ">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden  mx-auto flex flex-col md:flex-row">
+        <img src="{{asset('img/car.png')}}" alt="Car Image" class="w-full md:w-1/2 h-auto object-cover rounded-lg">
+        <div class="p-8 md:w-1/2">
+            <h3 class="text-lg font-semibold text-gray-700 uppercase mb-2">About Us</h3>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">We Provide The Best Cars For You!</h2>
+            <p class="text-gray-600 mb-4">Get yourself a best quality car at a best rate quoted anytime.</p>
+            <p class="text-gray-600 mb-6">We are Nepal's Largest Car Rental Company. With hundreds of fleets and best customer service, we offer you the best of class service.</p>
+            <a href="{{route('about')}}" class="inline-block bg-blue-500  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">Read More</a>
+        </div>
     </div>
 </section>
-
 @endsection
