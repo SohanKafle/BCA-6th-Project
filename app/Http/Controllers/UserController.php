@@ -14,5 +14,18 @@ class UserController extends Controller
     {
         return view('users.profile');
     }
+    public function about()
+    {
+        return view('users.about');
+    }
+    public function contact()
+    {
+        return view('users.contact');
+    }
+    public function services()
+    {
+        return view('users.services');
+    }
+    
 
 }
