@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="md:w-3/5 hidden md:block  ">
-                <img loading="lazy" src="/images/home car.png" alt="home car">
+                <img loading="lazy" src="{{asset('img/Ford_Mustang.jpg/')}}" alt="home car">
             </div>
 
         </div>
