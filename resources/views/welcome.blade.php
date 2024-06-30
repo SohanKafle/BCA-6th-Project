@@ -11,7 +11,9 @@
                 <h1 class=" md:text-start text-center  font-car font-bold text-gray-900 mb-8  md:text-7xl text-4xl "><span class="text-purple-400"> EASY
                     </span>AND
                     FAST WAY TO RENT YOUR CAR</h1>
-    
+                    <div class="md:w-3/5 md:hidden  ">
+                        <img loading="lazy" src="{{asset('img/Ford_Mustang.jpg/')}}" alt="home car">
+                    </div>
                 <p class="text-justify md:mx-0 mx-8 ">Whether you're planning a weekend
                     getaway or a cross-district adventure, we've got you covered. With our wide selection of vehicles and
                     convenient booking system, renting a car has never been this effortless.</p>
@@ -20,7 +22,7 @@
                         <button
                             class="bg-purple-400 p-2 border-2 border-white rounded-md text-white hover:bg-purple-500 w-32 md:me-12 md:mx-12 mx-7 font-bold ">CARS</button>
                     </a>
-                    <a href="/contact_us">
+                    <a href="{{route('contact')}}">
                         <button class="border-2 border-purple-400 text-black w-32 p-2 rounded-md hover:bg-purple-400">CONTACT
                             US</button>
                     </a>
