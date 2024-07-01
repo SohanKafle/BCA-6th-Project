@@ -20,17 +20,32 @@
                 <h2 class="font-bold text-2xl mb-5 text-center">Register for SK Car Rental</h2>
                 <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Name" name="name" required>
-                    <input type="email" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Email" name="email" required>
-                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Phone Number" name="phone" required>
-                    <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Password" name="password" required>
-                    <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Confirm Password" name="password_confirmation" required>
+                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Name" name="name" >
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    <input type="email" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Email" name="email" >
+                    @error('email')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Phone Number" name="phone" >
+                    @error('phone')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Password" name="password" >
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Confirm Password" name="password_confirmation" >
+                    @error('password_confirmation')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                     <div class="border border-gray-300 p-2 w-full mt-4 rounded-lg">
                         <label for="photo" class="block text-gray-700">Upload Photo</label>
                         <input type="file" id="photo" name="photo" class="w-full mt-2" accept="image/*">
                     </div>
                     <div class="mb-4 flex items-center mt-4">
-                        <input type="checkbox" name="terms" class="mr-2 rounded" required>
+                        <input type="checkbox" name="terms" class="mr-2 rounded" >
                         <label class="block text-gray-700">I agree to the Terms and Privacy Policy</label>
                     </div>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-900 transition-colors text-white py-2 w-full rounded-lg mt-4">Register</button>
