@@ -20,8 +20,14 @@
                 <h2 class="font-bold text-2xl mb-5 text-center">Login to SK Car Rental</h2>
                 <form action="{{route('login')}}" method="POST">
                     @csrf
-                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Email" name="email" required>
-                    <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Password" name="password" required>
+                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Email" name="email">
+                    @error('email')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                    <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Password" name="password">
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                     <div class="flex items-center justify-between mt-4">
                         <label class="inline-flex items-center">
                             <input type="checkbox" class="form-checkbox rounded text-blue-500" name="remember">
