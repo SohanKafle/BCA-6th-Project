@@ -14,7 +14,7 @@ Route::get('/services', [PagesController::class, 'services'])-> name('services')
 
 
 Route::get('users/index',[UserController::class,'index'])->name('users.index');
-Route::get('users/profile',[UserController::class,'profile'])->name('users.profile');
+Route::get('/profile/{id}',[UserController::class,'profile'])->name('users.profile');
 Route::get('users/about',[UserController::class,'about'])->name('users.about');
 Route::get('users/contact',[UserController::class,'contact'])->name('users.contact');
 Route::get('users/services',[UserController::class,'services'])->name('users.services');
