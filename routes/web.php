@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -19,12 +21,26 @@ Route::get('users/about',[UserController::class,'about'])->name('users.about');
 Route::get('users/contact',[UserController::class,'contact'])->name('users.contact');
 Route::get('users/services',[UserController::class,'services'])->name('users.services');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::get('/cars/index',[CarController::class,'index'])->name('cars.index');
+    Route::get('/cars/create',[CarController::class,'create'])->name('cars.create');
+    Route::post('/cars/store',[CarController::class,'store'])->name('cars.store');
+    Route::get('/cars/{id}/edit',[CarController::class,'edit'])->name('cars.edit');
+    Route::post('/cars/{id}/update',[CarController::class,'update'])->name('cars.update');
+    Route::get('/cars/{id}/delete',[CarController::class,'delete'])->name('cars.delete');
+    
+});
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    
+
+// Route::get('/dashboard', function () {
+    
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
