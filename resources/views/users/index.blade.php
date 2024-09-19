@@ -9,7 +9,8 @@
                 <h1 class=" md:text-start text-center  font-car font-bold text-gray-900 mb-8  md:text-7xl text-4xl ">
                     <span class="text-purple-400"> EASY
                     </span>AND
-                    FAST WAY TO RENT YOUR CAR</h1>
+                    FAST WAY TO RENT YOUR CAR
+                </h1>
                 <div class="md:w-3/5 md:hidden  ">
                     <img loading="lazy" src="{{ asset('img/Ford_Mustang.jpg/') }}" alt="home car">
                 </div>
@@ -19,15 +20,19 @@
                     convenient booking system, renting a car has never been this effortless.</p>
                 <div class="flex justify-center md:justify-start mt-12 md:w-2/3 me-12 md:-ms-12">
                     <a href="/cars">
-                        <button class="bg-purple-400 p-2 border-2 border-white rounded-md text-white hover:bg-purple-500 w-32 md:me-12 md:mx-12 mx-7 font-bold ">CARS</button>
+                        <button
+                            class="bg-purple-400 p-2 border-2 border-white rounded-md text-white hover:bg-purple-500 w-32 md:me-12 md:mx-12 mx-7 font-bold ">CARS</button>
                     </a>
                     <a href="{{ route('contact') }}">
-                        <button class="border-2 border-purple-400 text-black w-32 p-2 rounded-md hover:bg-purple-400">CONTACT US</button>
+                        <button
+                            class="border-2 border-purple-400 text-black w-32 p-2 rounded-md hover:bg-purple-400">CONTACT
+                            US</button>
                     </a>
                 </div>
             </div>
             <div class="md:w-3/5 hidden md:block">
-                <img loading="lazy" src="{{ asset('img/Ford_Mustang.jpg') }}" class="rounded-[500px] w-11/12 h-auto mx-6" alt="home car">
+                <img loading="lazy" src="{{ asset('img/Ford_Mustang.jpg') }}"
+                    class="rounded-[500px] w-11/12 h-auto mx-6" alt="home car">
             </div>
 
         </div>
@@ -37,19 +42,22 @@
     <!-- Box Container -->
     <div class="grid gap-4 md:grid-cols-3">
         <!-- Box 1 -->
-        <div class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+        <div
+            class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
             <img src="{{ asset('img/DCT.jpg') }}" alt="Dreams Come True">
             <h3 class="text-2xl font-bold mb-2">Make Your Dream True</h3>
             <p>At SK CAR RENTAL, we believe that every journey begins with a dream...</p>
         </div>
         <!-- Box 2 -->
-        <div class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+        <div
+            class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
             <img src="{{ asset('img/mem.jpg') }}" alt="Membership">
             <h3 class="text-2xl font-bold mb-2">Start Your Membership</h3>
             <p>Welcome to the next level of car rental experience...</p>
         </div>
         <!-- Box 3 -->
-        <div class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+        <div
+            class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
             <img src="{{ asset('img/eyr.jpg') }}" alt="Enjoy">
             <h3 class="text-2xl font-bold mb-2">Enjoy Your Ride</h3>
             <p>Every turn, every stop, every mile – they all contribute to the tapestry of memories...</p>
@@ -91,14 +99,16 @@
 
     <body class="bg-gray-100 flex items-center justify-center min-h-screen">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden  mx-auto flex flex-col md:flex-row">
-            <img src="{{ asset('img/car.png') }}" alt="Car Image" class="w-full md:w-1/2 h-auto object-cover rounded-lg">
+            <img src="{{ asset('img/car.png') }}" alt="Car Image"
+                class="w-full md:w-1/2 h-auto object-cover rounded-lg">
             <div class="p-8 md:w-1/2">
                 <h2 class="text-3xl font-bold text-red-600 mb-4">Hiring a car? You're at the right place.</h2>
                 <h3 class="text-3xl font-semibold text-blue-700 mb-4">SK Car Rental, तपाइको यात्राको सहयात्री।</h3>
                 <p class="text-gray-800 mb-4">Get yourself a best quality car at a best rate quoted anytime.</p>
                 <p class="text-gray-800 mb-6">We are Nepal's Largest Car Rental Company. With hundreds of fleets and
                     best customer service, we offer you the best of class service.</p>
-                <a href="{{ route('about') }}" class="inline-block bg-blue-500  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">Read
+                <a href="{{ route('about') }}"
+                    class="inline-block bg-blue-500  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">Read
                     More</a>
             </div>
         </div>
