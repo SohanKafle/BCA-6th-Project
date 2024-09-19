@@ -3,6 +3,7 @@ namespace App\Models\User;
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +13,29 @@ class UserController extends Controller
     public function index()
     {
         $user=Auth::user('id');
-    return view('users.index',compact('user'));
+        $cars=Car::all();
+         return view('users.index',compact('user','cars'));
     }
+
+    public function about()
+    {
+        $user=Auth::user('id');
+        return view('users.about', compact('user'));
+    }
+
+    public function contact()
+    {
+        $user=Auth::user('id');
+        return view('users.contact', compact('user'));
+    }
+
+    public function services()
+    {
+        $user=Auth::user('id');
+        return view('users.services', compact('user'));
+    }
+
+
     public function profile($id)
     {
         $user=Auth::user('id');

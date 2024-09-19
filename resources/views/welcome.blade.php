@@ -34,103 +34,59 @@
 
         </div>
 </section>
-
 <section class="sales container mx-auto p-8" id="sales">
-    <!-- Box 1 -->
-    <div class="box p-4 border rounded shadow">
-        <i class='bx bx-user text-4xl mb-2'></i>
-        <h3 class="text-2xl font-bold mb-2">Make Your Dream True</h3>
-        <p>At SK CAR RENTAL, we believe that every journey begins with a dream...</p>
-    </div>
-    <!-- Box 2 -->
-    <div class="box p-4 border rounded shadow">
-        <i class='bx bx-desktop text-4xl mb-2'></i>
-        <h3 class="text-2xl font-bold mb-2">Start Your Membership</h3>
-        <p>Welcome to the next level of car rental experience...</p>
-    </div>
-    <!-- Box 3 -->
-    <div class="box p-4 border rounded shadow">
-        <i class='bx bx-car text-4xl mb-2'></i>
-        <h3 class="text-2xl font-bold mb-2">Enjoy Your Ride</h3>
-        <p>Every turn, every stop, every mile – they all contribute to the tapestry of memories...</p>
+    <!-- Box Container -->
+    <div class="grid gap-4 md:grid-cols-3">
+        <!-- Box 1 -->
+        <div class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+            <img src="{{asset('img/DCT.jpg') }}" alt="Dreams Come True">
+            <h3 class="text-2xl font-bold mb-2">Make Your Dream True</h3>
+            <p>At SK CAR RENTAL, we believe that every journey begins with a dream...</p>
+        </div>
+        <!-- Box 2 -->
+        <div class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+            <img src="{{asset('img/mem.jpg') }}" alt="Membership">
+            <h3 class="text-2xl font-bold mb-2">Start Your Membership</h3>
+            <p>Welcome to the next level of car rental experience...</p>
+        </div>
+        <!-- Box 3 -->
+        <div class="box p-4 border rounded shadow transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+            <img src="{{asset('img/eyr.jpg') }}" alt="Enjoy">
+            <h3 class="text-2xl font-bold mb-2">Enjoy Your Ride</h3>
+            <p>Every turn, every stop, every mile – they all contribute to the tapestry of memories...</p>
+        </div>
     </div>
 </section>
 
-<!-- Properties -->
-<section class="properties container mx-auto p-8" id="properties">
-    <div class="heading text-center mb-8">
-        <span class="text-blue-500">Recent</span>
-        <h2 class="text-3xl font-bold">Our Featured Cars</h2>
-        <p>Get Driven all over Nepal</p>
-    </div>
-    <div class="properties-container flex flex-wrap gap-8">
-        <div class="box p-4 bg-white rounded-lg shadow-md">
-            <img src="" alt="car image" class="w-full h-48 object-cover rounded-t-lg">
-            <div class="p-4">
-                <h3 class="text-xl font-semibold mb-2">Car no:</h3>
-                <div class="content">
-                    <div class="text mb-2">
-                        <h3 class="text-lg font-semibold">Mercedes Benz</h3>
-                        <p>Lorem ipsum dolor sit.</p>
+    <!-- Properties -->
+    <section class="properties container mx-auto py-16" id="properties">
+    
+        <div class="text-center mb-8">
+            <span class="text-lg font-semibold text-cyan-500">Recent</span>
+            <h2 class="text-3xl font-bold">Our Featured Cars</h2>
+            <p class="text-gray-600">Get Driven all over Nepal</p>
+        </div>
+        <div class="grid grid-cols-3 gap-10 my-10 px-24">
+
+            @foreach($cars as $car) 
+            <div class="p-2 rounded-lg shadow">
+                <!-- Display car image -->
+                <img src="{{ asset($car->photopath) }}" alt="car" class="w-full h-64 object-cover">
+                
+                <div class="p-2">
+                    <!-- Car details -->
+                    <h2 class="text-xl font-semibold">Car No: {{$car->car_no}}</h2>
+                    <h2 class="text-xl font-semibold">Name: {{$car->name}}</h2>
+    
+                    <!-- Car price and rent button -->
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-xl font-thin">Rs. {{$car->price}}</span>
+                        <a href="{{route('login')}}"><button class="bg-blue-500 text-white px-2 py-1 rounded-lg">Book</button></a>
                     </div>
-                    <div class="icon mb-2">
-                        <a href="show.php" class="text-cyan-500">Show more</a>
-                    </div>
-                    <button class="bg-blue-500  hover:bg-blue-600 text-white py-2 px-4 rounded-full">Book</button>
                 </div>
             </div>
-        </div>
-        <div class="box p-4 bg-white rounded-lg shadow-md">
-            <img src="img/room.jpg" alt="car image" class="w-full h-48 object-cover rounded-t-lg">
-            <div class="p-4">
-                <h3 class="text-xl font-semibold mb-2">Car no:</h3>
-                <div class="content">
-                    <div class="text mb-2">
-                        <h3 class="text-lg font-semibold">Mercedes Benz</h3>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                    <div class="icon mb-2">
-                        <a href="show.php" class="text-cyan-500">Show more</a>
-                    </div>
-                    <button class="bg-blue-500  hover:bg-blue-600 text-white py-2 px-4 rounded-full">Book</button>
-                </div>
-            </div>
-        </div>
-        <div class="box p-4 bg-white rounded-lg shadow-md">
-            <img src="img/room.jpg" alt="car image" class="w-full h-48 object-cover rounded-t-lg">
-            <div class="p-4">
-                <h3 class="text-xl font-semibold mb-2">Car no:</h3>
-                <div class="content">
-                    <div class="text mb-2">
-                        <h3 class="text-lg font-semibold">Mercedes Benz</h3>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                    <div class="icon mb-2">
-                        <a href="show.php" class="text-cyan-500">Show more</a>
-                    </div>
-                    <button class="bg-blue-500  hover:bg-blue-600 text-white py-2 px-4 rounded-full">Book</button>
-                </div>
-            </div>
-        </div>
-        <div class="box p-4 bg-white rounded-lg shadow-md">
-            <img src="img/room.jpg" alt="car image" class="w-full h-48 object-cover rounded-t-lg">
-            <div class="p-4">
-                <h3 class="text-xl font-semibold mb-2">Car no:</h3>
-                <div class="content">
-                    <div class="text mb-2">
-                        <h3 class="text-lg font-semibold">Mercedes Benz</h3>
-                        <p>Lorem ipsum dolor sit.</p>
-                    </div>
-                    <div class="icon mb-2">
-                        <a href="show.php" class="text-cyan-500">Show more</a>
-                    </div>
-                    <button class="bg-blue-500  hover:bg-blue-600 text-white py-2 px-4 rounded-full">Book</button>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</section>
+        @endforeach
+    </section>
 
 <!-- About -->
 <section class="about container ">
@@ -138,8 +94,8 @@
     <div class="bg-white rounded-lg shadow-lg overflow-hidden  mx-auto flex flex-col md:flex-row">
         <img src="{{asset('img/car.png')}}" alt="Car Image" class="w-full md:w-1/2 h-auto object-cover rounded-lg">
         <div class="p-8 md:w-1/2">
-            <h3 class="text-lg font-semibold text-gray-700 uppercase mb-2">About Us</h3>
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">We Provide The Best Cars For You!</h2>
+            <h2 class="text-3xl font-bold text-red-600 mb-4">Hiring a car? You're at the right place.</h2>
+            <h3 class="text-3xl font-semibold text-blue-700 mb-4">SK Car Rental, तपाइको यात्राको सहयात्री।</h3>
             <p class="text-gray-600 mb-4">Get yourself a best quality car at a best rate quoted anytime.</p>
             <p class="text-gray-600 mb-6">We are Nepal's Largest Car Rental Company. With hundreds of fleets and best customer service, we offer you the best of class service.</p>
             <a href="{{route('about')}}" class="inline-block bg-blue-500  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">Read More</a>

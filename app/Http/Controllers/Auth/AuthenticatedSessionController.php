@@ -32,10 +32,11 @@ class AuthenticatedSessionController extends Controller
         {
             return redirect('users/index');
         }
-      else
-     {   
+      else if($request->user()->usertype==='admin')
+      {
         return redirect()->intended(route('dashboard', absolute: false));
-    }
+      }
+   
     }
 
     /**

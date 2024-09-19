@@ -45,26 +45,27 @@
         </div>
 
         <!-- Team Section -->
-        <section class="text-center mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-cyan-700">Meet Our Team</h2>
-            <div class="flex flex-wrap justify-center space-y-8 lg:space-y-0 lg:space-x-20">
-                <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
-                    <img src="{{asset('')}}" alt="Team Member 1" class="mx-auto shadow-lg rounded-full">
-                    <h3 class="mt-2 font-bold">Sohan Kafle</h3>
-                    <p class="text-sm">CEO</p>
-                </div>
-                <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
-                    <img src="https://via.placeholder.com/150" alt="Team Member 2" class="mx-auto shadow-lg rounded-full">
-                    <h3 class="mt-2 font-bold">Ganesh Adhikari</h3>
-                    <p class="text-sm">General Manager</p>
-                </div>
-                <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
-                    <img src="https://via.placeholder.com/150" alt="Team Member 3" class="mx-auto shadow-lg rounded-full">
-                    <h3 class="mt-2 font-bold">Swastika Acharya</h3>
-                    <p class="text-sm">Operation Head</p>
-                </div>
-            </div>
-        </section>
+<section class="text-center mb-8">
+    <h2 class="text-2xl font-bold mb-4 text-cyan-700">Meet Our Team</h2>
+    <div class="flex flex-wrap justify-center space-y-8 lg:space-y-0 lg:space-x-20">
+        <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+            <img src="{{asset('img/sohann.jpg')}}" alt="Team Member 1" class="mx-auto shadow-lg rounded-full w-40 h-40 object-cover">
+            <h3 class="mt-2 font-bold">Sohan Kafle</h3>
+            <p class="text-sm">CEO</p>
+        </div>
+        <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+            <img src="{{asset('img/aak.jpg')}}" alt="Team Member 2" class="mx-auto shadow-lg rounded-full w-40 h-40 object-cover">
+            <h3 class="mt-2 font-bold">Ganesh Adhikari</h3>
+            <p class="text-sm">General Manager</p>
+        </div>
+        <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+            <img src="{{asset('img/swo.jpg')}}" alt="Team Member 3" class="mx-auto shadow-lg rounded-full w-40 h-40 object-cover">
+            <h3 class="mt-2 font-bold">Swastika Acharya</h3>
+            <p class="text-sm">Operation Head</p>
+        </div>
+    </div>
+</section>
+
 
     </main>
 

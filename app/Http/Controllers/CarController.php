@@ -1,12 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
-
 class CarController extends Controller
 {
     public function index()
@@ -20,15 +16,12 @@ class CarController extends Controller
     }
     public function edit($id)
     {
-
         $car = Car::find($id); // Fetch the single car$ car by its ID
-
         return view('cars.edit', compact('car'));
     }
     public function update(Request $request, $id)
     {
         //dd($request->all());
-
         $data = $request->validate([
             'car_no' => 'required|integer',
             'name' => 'required|string|max:255',
@@ -42,16 +35,12 @@ class CarController extends Controller
         if ($request->hasFile('photopath')) {
             $photoname = time() . '.' . $request->photopath->extension();
             $request->photopath->move(public_path('images/cars'), $photoname);
-
             unlink(public_path('image/cars/' . $car->photopath));
             $data['photopath'] = $photoname;
         }
         $car->update($data);
         return redirect()->route('cars.index')->with('success', 'Car updated successfully.');
     }
-
-
-
     public function store(Request $request)
     {
         //dd($request->all());
@@ -91,8 +80,6 @@ class CarController extends Controller
     
         return back()->withErrors('File upload failed.');
     }
-
-
     public function delete($id)
     {
         $car = Car::find($id);
