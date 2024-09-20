@@ -2,10 +2,10 @@
 @section('content')
 
 <!-- Hero Section -->
-<section>
-    <div class="container mx-auto mt-28">
-        <h1 class="text-4xl font-bold mb-4">Our Services</h1>
-        <p class="text-lg">Explore the various services we offer to make your car rental experience smooth and enjoyable.</p>
+<section class="relative bg-cover bg-center h-64" style="background-image: url('{{ asset('img/fun.jpg') }}');">
+    <div class="absolute inset-0 bg-black opacity-50"></div> <!-- For dark overlay -->
+    <div class="relative flex justify-center items-center h-full">
+        <h1 class="text-white text-5xl mt-10 font-bold">Our Services</h1>
     </div>
 </section>
 

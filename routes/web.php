@@ -16,7 +16,10 @@ Route::get('/contact', [PagesController::class, 'contact'])-> name('contact');
 Route::get('/services', [PagesController::class, 'services'])-> name('services');
 
 
+Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::post('/profile/update', [UserController::class, 'update'])->name('users.update');
 Route::get('users/index',[UserController::class,'index'])->name('users.index');
+Route::get('users/editprofile',[UserController::class,'editprofile'])->name('users.editprofile');
 Route::get('/profile/{id}',[UserController::class,'profile'])->name('users.profile');
 Route::get('users/about',[UserController::class,'about'])->name('users.about');
 Route::get('users/contact',[UserController::class,'contact'])->name('users.contact');

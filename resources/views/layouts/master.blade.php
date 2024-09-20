@@ -13,16 +13,19 @@
         .transition-all {
             transition: all 0.3s ease;
         }
+
         .footer-line {
             border-top: 1px solid gray;
             margin-top: 1px;
         }
+
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
             display: none;
-            background-color: #007BFF; /* Specific blue color */
+            background-color: #007BFF;
+            /* Specific blue color */
             color: white;
             border: none;
             border-radius: 50%;
@@ -36,24 +39,27 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s;
         }
+
         .back-to-top:hover {
             background-color: #0056b3;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
     </style>
 </head>
 
 <body class="font-sans bg-gray-100 text-gray-900">
-  
+
     <!-- Navbar -->
     <header class="bg-white">
         <nav class="bg-gray-100 shadow-md fixed top-0 left-0 w-full z-50">
             <div class="container mx-auto flex justify-between items-center py-4 px-4 md:px-0">
                 <!-- Logo -->
                 <a href="{{route('home')}}"> <img src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true" alt="CarRental Logo" class="h-16"></a>
-                
+
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-black hover:text-blue-500 focus:outline-none">
@@ -88,20 +94,17 @@
                         </a>
                     </li>
                 </ul>
-                
+
                 <!-- Login/Register Buttons -->
                 <div class="hidden md:flex items-center space-x-4 lg:order-2">
                     <a href="{{ route('login') }}">
-                        <button type="button"
-                            class="px-4 lg:px-5 py-2 lg:py-2.5 mr-2 text-white bg-gradient-to-br from-purple-500 to-purple-400 hover:bg-gradient-to-bl font-medium rounded-lg text-sm">
+                        <button type="button" class="px-4 lg:px-5 py-2 lg:py-2.5 mr-2 text-white bg-gradient-to-br from-purple-500 to-purple-400 hover:bg-gradient-to-bl font-medium rounded-lg text-sm">
                             Login
                         </button>
                     </a>
                     <a href="{{ route('register') }}">
-                        <button
-                            class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900">
-                            <span
-                                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-sec-600 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        <button class="relative mr-4 inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-sec-600 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                                 Register
                             </span>
                         </button>
@@ -138,16 +141,13 @@
                     </li>
                     <li class="flex flex-col items-center space-y-2">
                         <a href="{{ route('login') }}">
-                            <button type="button"
-                                class="px-4 lg:px-5 py-2 lg:py-2.5 text-white bg-gradient-to-br from-purple-500 to-purple-400 hover:bg-gradient-to-bl font-medium rounded-lg text-sm">
+                            <button type="button" class="px-4 lg:px-5 py-2 lg:py-2.5 text-white bg-gradient-to-br from-purple-500 to-purple-400 hover:bg-gradient-to-bl font-medium rounded-lg text-sm">
                                 Login
                             </button>
                         </a>
                         <a href="{{ route('register') }}">
-                            <button
-                                class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900">
-                                <span
-                                    class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-sec-600 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            <button class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900">
+                                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-sec-600 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                                     Register
                                 </span>
                             </button>
@@ -160,7 +160,7 @@
 
     <script>
         // Toggle mobile menu visibility
-        document.getElementById('mobile-menu-button').onclick = function () {
+        document.getElementById('mobile-menu-button').onclick = function() {
             var menu = document.getElementById('mobile-menu');
             if (menu.classList.contains('hidden')) {
                 menu.classList.remove('hidden');
@@ -168,10 +168,11 @@
                 menu.classList.add('hidden');
             }
         }
+
     </script>
 
 
-@yield('content')
+    @yield('content')
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8">
@@ -225,21 +226,25 @@
     </div>
 
     {{-- <------------------------Back to Top Button----------------------------------> --}}
-        <button class="back-to-top" onclick="scrollToTop()"><i class="bx bx-up-arrow-alt"></i></button>
+    <button class="back-to-top" onclick="scrollToTop()"><i class="bx bx-up-arrow-alt"></i></button>
 
-        <script>
-            window.onscroll = function() {
-                let button = document.querySelector('.back-to-top');
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    button.style.display = 'block';
-                } else {
-                    button.style.display = 'none';
-                }
-            };
-    
-            function scrollToTop() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+    <script>
+        window.onscroll = function() {
+            let button = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
             }
-        </script>
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0
+                , behavior: 'smooth'
+            });
+        }
+
+    </script>
 </body>
 </html>

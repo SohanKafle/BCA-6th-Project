@@ -19,7 +19,7 @@
                     and
                     convenient booking system, renting a car has never been this effortless.</p>
                 <div class="flex justify-center md:justify-start mt-12 md:w-2/3 me-12 md:-ms-12">
-                    <a href="/cars">
+                    <a href="">
                         <button
                             class="bg-purple-400 p-2 border-2 border-white rounded-md text-white hover:bg-purple-500 w-32 md:me-12 md:mx-12 mx-7 font-bold ">CARS</button>
                     </a>

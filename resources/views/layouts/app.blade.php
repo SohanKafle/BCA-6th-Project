@@ -27,7 +27,7 @@
 @endif
         <div class="flex">
             <div class="w-56 h-screen bg-gray-100 shadow">
-                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3D%2522rk%2Blogo%2522&psig=AOvVaw3QpbuqZvjJ3jioiKh2FaK3&ust=1717926671343000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMiyrdrdy4YDFQAAAAAdAAAAABAE" alt="" class="p-2 m-2 w-10/12 mx-auto mt-5 bg-white rounded-lg shadow-lg ">
+                <img src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true" alt="" class="p-2 m-2 w-10/12 mx-auto mt-5 bg-white rounded-lg shadow-lg ">
                 <div class="mt-5">
                     <a href="{{route('dashboard')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Dashboard</a>
                     <a href="" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Categories</a>

@@ -102,7 +102,7 @@
                 </ul>
 
                 <!-- Login Button and Dropdown -->
-                <div class="relative inline-block text-left ml-4">
+                <div class="relative inline-block text-left mr-8">
                     <!-- Dropdown trigger image -->
                     <img id="dropdownDefaultButton" src="path/to/your/image.jpg" alt="Dropdown trigger"
                         class="cursor-pointer w-10 h-10 rounded-full">
@@ -122,6 +122,7 @@
                                 <button type="submit"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
                             </form>
+                        
                         </ul>
                     </div>
                 </div>
