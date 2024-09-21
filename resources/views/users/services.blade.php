@@ -8,6 +8,7 @@
         <h1 class="text-white text-5xl mt-10 font-bold">Our Services</h1>
     </div>
 </section>
+<br>
 
 <!-- Services Section -->
 <section class="container mx-auto p-8">
@@ -50,5 +51,6 @@
         </div>
     </div>
 </section>
+<br>
 
 @endsection

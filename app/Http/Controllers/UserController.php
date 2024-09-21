@@ -3,10 +3,13 @@ namespace App\Models\User;
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormMail;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -41,10 +44,15 @@ class UserController extends Controller
         $user=Auth::user('id');
          return view('users.profile', compact('user'));
     }
-    public function car()
+    public function book($id)
     {
-        
+        $cars = Car::find($id);
+        $user=Auth::user('id');
 
+      
+
+       
+        return view('users.book',compact('cars','user'));
     }
     public function edit()
     {
@@ -74,5 +82,35 @@ class UserController extends Controller
             $user->update($data);
         
         return redirect()->route('users.index')->with('success','User updated successfully.');
+    }
+
+
+    public function sendContactForm(Request $request)
+    {
+      // Validate form data
+      $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|numeric',
+        'city' => 'required|string|max:255', // Change 'city' validation to a standard string validation
+        'message' => 'required|string',
+    ]);
+
+    // Prepare email data
+    $emailData = [
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'phone' => $request->input('phone'),
+        'city' => $request->input('city'), // You can include city in your email as well
+        'message' => $request->input('message'),
+    ];
+
+
+
+        // Send the email using the Mailable class
+        Mail::to('kaflesohan1@gmail.com')->send(new ContactFormMail($emailData));
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 }

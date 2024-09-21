@@ -7,7 +7,7 @@
     <div class="relative flex justify-center items-center h-full">
         <h1 class="text-white text-5xl mt-10 font-bold">Our Services</h1>
     </div>
-</section>
+</section><br>
 
 <!-- Services Section -->
 <section class="container mx-auto p-8">
@@ -49,7 +49,7 @@
             <p>Enjoy complimentary navigation systems to make your journey easier and more enjoyable.</p>
         </div>
     </div>
-</section>
+</section><br>
 
 
 @endsection

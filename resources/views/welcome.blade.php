@@ -61,10 +61,19 @@
     <!-- Properties -->
     <section class="properties container mx-auto py-16" id="properties">
     
-        <div class="text-center mb-8">
-            <span class="text-lg font-semibold text-cyan-500">Recent</span>
-            <h2 class="text-3xl font-bold">Our Featured Cars</h2>
-            <p class="text-gray-600">Get Driven all over Nepal</p>
+        <div class="mx-auto max-w-screen-xl">
+            <div class="flex align-middle justify-center">
+                <hr class=" mt-8 h-0.5 w-2/5 bg-pink-500">
+                <p class="my-2 mx-8  p-2 font-car font-bold text-black-400 text-lg ">CARS</p>
+                <hr class=" mt-8 h-0.5 w-2/5 bg-pink-500">
+                <hr>
+            </div>
+            <div class="   md:mr-16 mr-4 mb-4 flex justify-end">
+                <a href="{{route('car')}}">
+                    <button class="border-2 border-black font-medium text-black w-16 p-1 rounded-md hover:bg-blue-400 hover:text-white">See
+                        All</button>
+                </a>
+            </div>
         </div>
         <div class="grid grid-cols-3 gap-10 my-10 px-24">
 

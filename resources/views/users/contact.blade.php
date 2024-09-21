@@ -14,19 +14,26 @@
         <p class="text-sm text-gray-500 mt-4 leading-relaxed">Have a specific inquiry or looking to explore new opportunities? Our
             experienced team is ready to engage with you.</p>
 
-        <form>
+            @if (session('success'))
+            <div class="text-green-600 mt-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+            <form action="{{ route('users.sendContactForm') }}" method="POST">
+            @csrf
             <div class="space-y-4 mt-8">
-                <input type="text" placeholder="Full Name" class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
-                <input type="text" placeholder="City" class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
+                <input type="text" name="name" placeholder="Full Name" class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
+                <input type="text" name="city" placeholder="City" class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
                
-                <input type="number" placeholder="Phone No." class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
+                <input type="number" name="phone" placeholder="Phone No." class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
 
-                <input type="email" placeholder="Email" class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
+                <input type="email" name="email" placeholder="Email" class="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg" />
 
-                <textarea placeholder="Write Message" class="px-2 pt-4 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg"></textarea>
+                <textarea placeholder="Write Message" name="message" class="px-2 pt-4 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 outline-none rounded-lg"></textarea>
             </div>
 
-            <button type="button" class="mt-8 flex items-center justify-center text-sm font-semibold w-full rounded-md px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white">
+            <button type="submit" class="mt-8 flex items-center justify-center text-sm font-semibold w-full rounded-md px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill='#fff' class="mr-2" viewBox="0 0 548.244 548.244">
                     <path fill-rule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clip-rule="evenodd" data-original="#000000" />
                 </svg>
