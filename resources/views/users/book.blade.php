@@ -1,59 +1,155 @@
 @extends('layouts.user')
 @section('content')
 
-    <!-- Car Information Section -->
-    <section class="container mx-auto mt-20">
-        <div class="bg-gray-800 text-white  shadow-lg overflow-hidden md:flex">
-            <!-- Car Image -->
-            <div class="w-full md:w-1/2">
-                <img src="{{ asset($cars->photopath) }}" alt="{{ $cars->name }} Image" class="w-full h-full object-cover">
-            </div>
-            
-            <!-- Car Details and Booking Form -->
-            <div class="p-6 md:w-1/2">
-                <!-- Car Title -->
-                <h2 class="text-3xl font-bold mb-4">{{ $cars->name }}</h2>
-                
-                <!-- Car Details -->
-                <p class="mb-2"><span class="font-semibold">Car Number:</span> {{ $cars->car_no }}</p>
-                <p class="mb-2"><span class="font-semibold">Price per Day:</span> Rs. {{ number_format($cars->price, 2) }}</p>
-                <p class="mb-2">
-                    <span class="font-semibold">Availability:</span>
-                    {{ $cars->availability > 0 ? 'Available' : 'Currently Unavailable' }}
-                </p>
-                
-                <!-- Car Description -->
-                <h4 class="text-lg font-semibold mt-4">About this Car</h4>
-                <p class="mt-2 leading-relaxed">{{ $cars->description }}</p>
+    <div class="mx-auto max-w-screen-xl  rounded-md p-6 m-8 mt-20 ">
+        <div class="flex justify-between md:flex-row flex-col ">
+            {{-- -------------------------------------------- left -------------------------------------------- --}}
+            <div class="md:w-2/3  md:border-r border-gray-800 p-2">
 
-                <!-- Booking Form -->
-                <form action="" method="POST" class="mt-6">
-                    @csrf <!-- Laravel CSRF Protection -->
-                    <input type="hidden" name="car_id" value="{{ $cars->id }}">
-                    
-                    <!-- Booking Details -->
-                    <div class="grid gap-4 mb-4">
-                        <div>
-                            <label for="pickup_city" class="block mb-1 text-sm font-medium">Pickup City</label>
-                            <input type="text" id="pickup_city" name="pickup_city" placeholder="Enter Pickup Location" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-300" required>
+                <h2 class=" ms-4 max-w-full font-car md:text-6xl text-4xl">{{ $cars->name }} 
+                </h2>
+
+                <div class=" flex items-end mt-8 ms-4">
+                    <h3 class="font-car text-gray-500 text-2xl">Price:</h3>
+                    <p>
+                        <span
+                            class=" text-3xl font-bold text-pr-400 ms-3 me-1 border border-blue-400 p-2 rounded-md"> Rs. {{ $cars->price }}
+                            </span>
+                    </p>
+                </div>
+
+                <div class=" flex items-center justify-around mt-10 me-10">
+                    <div class="w-1/5 md:w-1/3 h-[0.25px] bg-gray-500 "> </div>
+                    <p>Order Informations</p>
+                    <div class="w-1/5 md:w-1/3 h-[0.25px] bg-gray-500 "> </div>
+
+                </div>
+
+                <div class="px-6 md:me-8">
+                    <form id="reservation_form" action=""
+                        method="POST">
+                        @csrf
+                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+                            <input type="text" hidden name="user" value="{{ Auth::user()->id }}">
+
+                            <div class="sm:col-span-3">
+                                <label for="full-name" class="block text-sm font-medium leading-6 text-gray-900">Full
+                                    Name</label>
+                                <div class="mt-2">
+                                    <input type="text" name="full-name" id="full-name" value="{{ $user->name }}"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
+                                </div>
+                                @error('name')
+                                    <span class="text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="email"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                                <div class="mt-2">
+                                    <input type="text" name="email" id="email" value="{{ $user->email }}"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
+                                </div>
+                                @error('email')
+                                    <span class="text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="start_date" class="block text-sm font-medium leading-6 text-gray-900">Start at
+                                </label>
+                                <div class="mt-2">
+                                    <input type="date" name="start_date" id="start_date"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
+                                </div>
+                                @error('start_date')
+                                    <span class="text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label for="end_date" class="block text-sm font-medium leading-6 text-gray-900">End at
+                                </label>
+                                <div class="mt-2">
+                                    <input type="date" name="end_date" id="end_date"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
+                                </div>
+                                @error('end_date')
+                                    <span class="text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                        
-                        <div>
-                            <label for="pickup_date" class="block mb-1 text-sm font-medium">Pickup Date</label>
-                            <input type="date" id="pickup_date" name="pickup_date" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-300" required>
+                        <div class="mt-12 md:block hidden  ">
+                            <button type="submit"
+                                class="text-white bg-pr-400 p-3 w-full rounded-lg font-bold hover:bg-black shadow-xl hover:shadow-none ">Book
+                                Now</button>
                         </div>
-                        
-                        <div>
-                            <label for="arrival_date" class="block mb-1 text-sm font-medium">Arrival Date</label>
-                            <input type="date" id="arrival_date" name="arrival_date" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring focus:ring-blue-300" required>
-                        </div>
-                    </div>
-                    
-                    <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">Confirm Booking</button>
-                </form>
+                    </form>
+                </div>
+
+            </div>
+
+            {{-- -------------------------------------------- right -------------------------------------------- --}}
+
+            <div class="md:w-1/3 flex flex-col justify-start items-center">
+                <div class="relative mx-3 mt-3 flex h-[200px] w-3/4   overflow-hidden rounded-xl shadow-lg">
+                    <img loading="lazy" class="h-full w-full object-cover" src="{{ asset($cars->photopath) }}" alt="product image" />
+                  
+                </div>
+                <p class=" ms-4 max-w-full font-car text-xl mt-3 md:block hidden">{{ $cars->name }} 
+                </p>
+
+
+                <div class=" w-full   mt-8 ms-8">
+                    <p id="duration" class="font-car text-gray-600 text-lg ms-2">Duration: <span
+                            class="mx-2 font-car text-md font-medium text-gray-700 border border-pr-400 p-2 rounded-md "> X
+                            days</span>
+                    </p>
+                </div>
+
+                <div class=" w-full   mt-8 ms-8">
+                    <p id="total-price" class="font-car text-gray-600 text-lg ms-2">Total Price: <span
+                            class="mx-2 font-car text-md font-medium text-gray-700 border border-pr-400 p-2 rounded-md "> Y
+                            $</span>
+                    </p>
+                </div>
+                <div id="mobile_submit_button" class="mt-12 w-full md:hidden  ">
+                    <button type="submit"
+                        class="text-white bg-pr-400 p-3 w-full rounded-lg font-bold hover:bg-black shadow-xl hover:shadow-none ">Book
+                        Now</button>
+                </div>
             </div>
         </div>
-    </section>
 
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#start_date, #end_date').change(function() {
+                var startDate = new Date($('#start_date').val());
+                var endDate = new Date($('#end_date').val());
+
+                if (startDate && endDate && startDate <= endDate) {
+                    var duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                    var pricePerDay = {{ $cars->price }};
+                    var totalPrice = duration * price;
+
+                    $('#duration span').text(duration + ' days');
+                    $('#total-price span').text(totalPrice + ' $');
+                } else {
+                    $('#duration span').text('X days');
+                    $('#total-price span').text('Y $');
+                }
+            });
+        });
+
+        document.getElementById("mobile_submit_button").addEventListener("click", function() {
+            document.getElementById("reservation_form").submit();
+        });
+    </script>
 @endsection

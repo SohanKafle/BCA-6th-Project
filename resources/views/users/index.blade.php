@@ -19,7 +19,7 @@
                     and
                     convenient booking system, renting a car has never been this effortless.</p>
                 <div class="flex justify-center md:justify-start mt-12 md:w-2/3 me-12 md:-ms-12">
-                    <a href="">
+                    <a href="{{route('users.car')}}">
                         <button
                             class="bg-purple-400 p-2 border-2 border-white rounded-md text-white hover:bg-purple-500 w-32 md:me-12 md:mx-12 mx-7 font-bold ">CARS</button>
                     </a>
@@ -76,7 +76,7 @@
             <hr>
         </div>
         <div class="   md:mr-16 mr-4 mb-4 flex justify-end">
-            <a href="">
+            <a href="{{route('users.car')}}">
                 <button class="border-2 border-black font-medium text-black w-16 p-1 rounded-md hover:bg-blue-400 hover:text-white">See
                     All</button>
             </a>
