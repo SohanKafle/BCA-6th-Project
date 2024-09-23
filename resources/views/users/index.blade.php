@@ -92,14 +92,14 @@
             <div class="p-2">
                 <!-- Car details -->
                 <h2 class="text-xl font-semibold">Car No: {{ $car->car_no }}</h2>
-                <h2 class="text-xl font-semibold">Name: {{ $car->name }}</h2>
+                <h2 class="text-xl font-bold"> {{ $car->name }}</h2>
 
                 <!-- Car price and rent button -->
                 <div class="flex justify-between items-center mt-4">
                     <span class="text-xl font-thin">Rs. {{ $car->price }}</span>
                     <form action="{{route('users.book',['id' => $car->id])}}" method="POST">
                         @csrf
-                    <button class="bg-blue-500 text-white px-2 py-1 rounded-lg">Book</button>
+                    <button class="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-blue-800">Book Now</button>
                     </form>
                 </div>
             </div>

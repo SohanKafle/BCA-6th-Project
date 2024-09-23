@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="container mx-auto py-12 mt-14">
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-12"> {{ $name ?? 'Your search Result' }}</h1>
+        <h1 class="text-4xl font-bold text-center underline text-violet-800 mb-12"> {{ $name ?? 'Your search Result' }}</h1>
 
         <!-- Display Results -->
         <section class="properties container mx-auto" id="properties">
@@ -10,20 +10,23 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 px-8">
                     @foreach($properties as $property)
                     <div class="bg-white rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300">
-                        <img src="{{ asset('uploads/cars/'.$property->photopath) }}" alt="car" class="w-full h-64 object-cover rounded-t-lg">
+                        <img src="{{ asset($property->photopath) }}" alt="car" class="w-full h-64 object-cover rounded-t-lg">
                         <div class="p-5">
                             <h2 class="text-2xl font-semibold text-gray-800 mb-2">Car No: {{ $property->car_no }}</h2>
-                            <p class="text-gray-600 mb-4">Name: {{ $property->name }}</p>
+                            <p class="text-gray-600 mb-4">{{ $property->name }}</p>
                             <div class="flex justify-between items-center">
                                 <span class="text-xl font-semibold text-blue-500">Rs. {{ number_format($property->price) }}</span>
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Rent</button>
+                                <form action="{{ route('users.book', ['id' => $property->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300">Book Now</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
             @else
-                <p class="text-gray-600 text-center text-lg mt-16">No cars found matching your criteria.</p>
+                <p class="text-red-600 text-center text-xl font-medium mt-16">No Search results found!</p>
             @endif
         </section>
 

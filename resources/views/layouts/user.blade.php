@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         /* Add this for smoother transitions */
- 
+
         .transition-all {
             transition: all 0.3s ease;
         }
@@ -48,6 +48,7 @@
         html {
             scroll-behavior: smooth;
         }
+
     </style>
 </head>
 
@@ -58,9 +59,7 @@
         <nav class="bg-gray-100 shadow-md fixed top-0 left-0 w-full z-50">
             <div class="container mx-auto flex justify-between items-center py-4 px-4 md:px-0">
                 <!-- Logo -->
-                <a href="{{ route('users.index') }}"> <img
-                        src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true"
-                        alt="CarRental Logo" class="h-16"></a>
+                <a href="{{ route('users.index') }}"> <img src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true" alt="CarRental Logo" class="h-16"></a>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
@@ -72,29 +71,26 @@
                 <!-- Navigation Links -->
                 <ul id="nav-links" class="hidden md:flex gap-10 items-center">
                     <li>
-                        <a href="{{ route('users.index') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.index') }}" class=" text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-home'></i>
                             <span>Home</span>
+                          
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.about') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.about') }}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-user'></i>
                             <span>About Us</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.services') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.services') }}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-cog'></i>
                             <span>Our Services</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.contact') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.contact') }}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-envelope'></i>
                             <span>Contact Us</span>
                         </a>
@@ -104,25 +100,20 @@
                 <!-- Login Button and Dropdown -->
                 <div class="relative inline-block text-left mr-8">
                     <!-- Dropdown trigger image -->
-                    <img id="dropdownDefaultButton" src="path/to/your/image.jpg" alt="Dropdown trigger"
-                        class="cursor-pointer w-10 h-10 rounded-full">
+                    <img id="dropdownDefaultButton" src="path/to/your/image.jpg" alt="Dropdown trigger" class="cursor-pointer w-10 h-10 rounded-full">
                     <!-- Dropdown menu -->
-                    <div id="dropdown"
-                        class="absolute right-0 mt-2 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownDefaultButton">
-                            <li><a href="{{ route('users.profile',['id' => $user->id])}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-
+                    <div id="dropdown" class="absolute right-0 mt-2 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="{{ route('users.profile',['id' => $user->id])}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                             </li>
-                            <li><a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cars</a>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cars</a>
                             </li>
                             <form action="{{ route('logout') }}" method="POST" class="inline">
                                 @csrf
-                                <button type="submit"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
+                                <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logout</button>
                             </form>
-                        
+
                         </ul>
                     </div>
                 </div>
@@ -132,34 +123,30 @@
             <div id="mobile-menu" class="md:hidden hidden bg-gray-100 shadow-md transition-all">
                 <ul class="flex flex-col items-center space-y-4 py-4">
                     <li>
-                        <a href="{{route('users.index')}}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{route('users.index')}}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-home'></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.about') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.about') }}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-user'></i>
                             <span>About Us</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.services') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.services') }}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-cog'></i>
                             <span>Our Services</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('users.contact') }}"
-                            class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
+                        <a href="{{ route('users.contact') }}" class="text-1xl font-bold flex items-center space-x-1 text-black hover:text-blue-500">
                             <i class='bx bx-envelope'></i>
                             <span>Contact Us</span>
                         </a>
                     </li>
-                    
+
                 </ul>
             </div>
         </nav>
@@ -175,8 +162,8 @@
                 menu.classList.add('hidden');
             }
         }
-                // Toggle Dropdown Menu
-                document.getElementById('dropdownDefaultButton').addEventListener('click', function() {
+        // Toggle Dropdown Menu
+        document.getElementById('dropdownDefaultButton').addEventListener('click', function() {
             var dropdown = document.getElementById('dropdown');
             if (dropdown.classList.contains('hidden')) {
                 dropdown.classList.remove('hidden');
@@ -193,6 +180,7 @@
                 dropdown.classList.add('hidden');
             }
         });
+
     </script>
 
 
@@ -241,14 +229,10 @@
             <div>
                 <h3 class="font-bold mb-2">Follow Us On</h3>
                 <div class="flex space-x-4">
-                    <a href="https://www.facebook.com/sohanmessi10" class="hover:text-blue-400"><i
-                            class='bx bxl-facebook'></i></a>
-                    <a href="https://twitter.com/SohanKafle" class="hover:text-blue-400"><i
-                            class='bx bxl-twitter'></i></a>
-                    <a href="https://www.instagram.com/sohan_lm10/" class="hover:text-blue-400"><i
-                            class='bx bxl-instagram'></i></a>
-                    <a href="https://www.linkedin.com/in/sohan-kafle/" class="hover:text-blue-400"><i
-                            class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.facebook.com/sohanmessi10" class="hover:text-blue-400"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://twitter.com/SohanKafle" class="hover:text-blue-400"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.instagram.com/sohan_lm10/" class="hover:text-blue-400"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.linkedin.com/in/sohan-kafle/" class="hover:text-blue-400"><i class='bx bxl-linkedin'></i></a>
                 </div>
             </div>
         </div>
@@ -273,10 +257,11 @@
 
         function scrollToTop() {
             window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+                top: 0
+                , behavior: 'smooth'
             });
         }
+
     </script>
 
 </body>

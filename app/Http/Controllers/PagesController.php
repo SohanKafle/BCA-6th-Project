@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
     public function home()
     {
-        $cars=Car::all();
-        return view ('welcome', compact('cars'));
+        $cars = Car::take(6)->get(); // Fetch only 6 cars
+    return view('welcome', compact('cars'));
     }
 
     public function about()
@@ -41,31 +42,39 @@ class PagesController extends Controller
 
     public function search(Request $request)
     {
-        // Get filter values from the request
-        $name = $request->input('name');
-        $min_price = $request->input('min_price');
-        $max_price = $request->input('max_price');
-
-        // Build the query
+        // Validate the request inputs
+        $validated = $request->validate([
+            'brand' => 'nullable|string|max:255',
+            'min_price' => 'required|numeric|min:1', // Required, must be numeric and positive
+            'max_price' => 'required|numeric|min:1', // Required, must be numeric and positive
+        ], [
+            // Custom error messages
+            'min_price.required' => 'Minimum price is required.',
+            'min_price.min' => 'Minimum price must be greater than 0.',
+            'max_price.required' => 'Maximum price is required.',
+            'max_price.min' => 'Maximum price must be greater than 0.',
+        ]);
+    
+        // Get the filtered cars
         $query = Car::query();
-
-        // Apply filters
-        if ($name) {
-            $query->where('name', 'LIKE', "%{$name}%");
+    
+        if ($validated['brand']) {
+            $query->where('name', 'LIKE', "%" . $validated['brand'] . "%");
         }
-
-        if ($min_price) {
-            $query->where('price', '>=', $min_price);
+    
+        if ($validated['min_price']) {
+            $query->where('price', '>=', $validated['min_price']);
         }
-
-        if ($max_price) {
-            $query->where('price', '<=', $max_price);
+    
+        if ($validated['max_price']) {
+            $query->where('price', '<=', $validated['max_price']);
         }
-
-        // Get the filtered properties
+    
+        $cars = $query->paginate(9); // Paginate the results
         $properties = $query->get();
-
-        // Redirect to another page showing the results
-        return view('search', compact('properties'));
+        // Return the view with cars
+        return view('search', compact('cars', 'properties'));
     }
+    
+    
 }

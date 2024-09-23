@@ -51,10 +51,10 @@
             </section>
         </div>
     </div>
-
+<br>
     <!-- Team Section -->
     <section class="text-center mb-6">
-        <h2 class="text-2xl font-bold mb-4 text-cyan-700">Meet Our Team</h2>
+        <h2 class="text-2xl font-bold mb-4 text-cyan-700">Meet Our Team</h2><br>
         <div class="flex flex-wrap justify-center space-y-8 lg:space-y-0 lg:space-x-20">
             <div class="text-center w-full sm:w-1/2 md:w-1/3 lg:w-auto">
                 <img src="{{asset('img/sohann.jpg')}}" alt="Team Member 1" class="mx-auto shadow-lg rounded-full w-40 h-40 object-cover">

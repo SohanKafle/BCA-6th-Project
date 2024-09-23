@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user('id');
-        $cars = Car::all();
+        $cars = Car::take(6)->get();
         return view('users.index', compact('user', 'cars'));
     }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
     public function car()
     {
         $user = Auth::user('id');
-        $cars = Car::all();
+        $cars = Car::paginate(6); 
         return view('users.car', compact('user', 'cars'));
     }
 
@@ -62,6 +62,8 @@ class UserController extends Controller
         $relatedCars = Car::where('name', $cars->name)
             ->where('id', '!=', $id)
             ->get();
+        $duration = $cars->duration;
+
 
         return view('users.book', compact('cars', 'user', 'relatedCars'));
     }
@@ -127,32 +129,37 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $user = Auth::user('id');
-        // Get filter values from the request
-        $name = $request->input('name');
-        $min_price = $request->input('min_price');
-        $max_price = $request->input('max_price');
-
+        // Validate request inputs
+        $validated = $request->validate([
+            'brand' => 'nullable|string|max:255',
+            'min_price' => 'nullable|numeric|min:0',
+            'max_price' => 'nullable|numeric|min:0'
+        ]);
+    
+        // Get authenticated user
+        $user = Auth::user('id'); // Fetching user ID directly
+    
         // Build the query
         $query = Car::query();
-
+    
         // Apply filters
-        if ($name) {
-            $query->where('name', 'LIKE', "%{$name}%");
+        if ($validated['brand']) {
+            $query->where('name', 'LIKE', "%" . $validated['brand'] . "%");
         }
-
-        if ($min_price) {
-            $query->where('price', '>=', $min_price);
+    
+        if ($validated['min_price']) {
+            $query->where('price', '>=', $validated['min_price']);
         }
-
-        if ($max_price) {
-            $query->where('price', '<=', $max_price);
+    
+        if ($validated['max_price']) {
+            $query->where('price', '<=', $validated['max_price']);
         }
-
-        // Get the filtered properties
+    
+        // Execute the query and get filtered results
         $properties = $query->get();
-
-        // Redirect to another page showing the results
+    
+        // Return view with the filtered data
         return view('users.search', compact('properties', 'user'));
     }
+    
 }

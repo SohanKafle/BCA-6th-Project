@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
         $totalUsers = User::count();
         $totalCars = Car::count();
-        $availableCars = Car::where('availabilty', 'available')->count(); // Assuming 'status' is a column
+        $availableCars = Car::where('availabilty', 'available')->count();
         $bookedCars = $totalCars - $availableCars;
         // $pendingRequests = Car::where('status', 'pending')->count(); // Example for pending requests
         $totalVisits = 30000;
