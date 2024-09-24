@@ -7,6 +7,8 @@
     <title>SK CAR RENTAL</title>
     <link rel="shortcut icon" href="{{ asset('img/weblogo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         /* Add this for smoother transitions */

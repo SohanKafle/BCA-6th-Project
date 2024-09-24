@@ -29,6 +29,8 @@ Route::get('users/about',[UserController::class,'about'])->name('users.about');
 Route::get('users/contact',[UserController::class,'contact'])->name('users.contact');
 Route::get('users/services',[UserController::class,'services'])->name('users.services');
 Route::get('users/search',[UserController::class,'search'])->name('users.search');
+Route::get('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment');
+Route::post('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment.post');
 
 
 Route::get('useradmin/index',[UseradminController::class,'index'])->name('useradmin.index');

@@ -24,15 +24,18 @@
             </div>
 
             <div class="px-6 md:me-8">
-                <form id="reservation_form" action="" method="POST">
+                <form id="reservation_form" action="{{ route('users.selectpayment') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="user" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="car_id" value="{{ $cars->id }}">
+                    <input type="hidden" name="price_per_day" value="{{ $cars->price }}">
+                    <input type="hidden" name="total_price" id="total_price_input">
+                    <input type="hidden" name="duration" id="duration_input">
+
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                        <input type="text" hidden name="user" value="{{ Auth::user()->id }}">
-
                         <div class="sm:col-span-3">
-                            <label for="full-name" class="block text-sm font-medium leading-6 text-gray-900">Full
-                                Name</label>
+                            <label for="full-name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
                             <div class="mt-2">
                                 <input type="text" name="full-name" id="full-name" value="{{ $user->name }}"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
@@ -67,7 +70,7 @@
                     </div>
 
                     <div class="mt-12 md:flex hidden gap-4">
-                        <button type="submit" class="text-white bg-blue-500 p-3 w-full rounded-lg font-bold hover:bg-blue-700 shadow-xl hover:shadow-none">
+                        <button type="submit" id="submit_button" disabled class="text-white bg-blue-500 p-3 w-full rounded-lg font-bold hover:bg-blue-700 shadow-xl hover:shadow-none disabled:opacity-50">
                             Book Now
                         </button>
                         <!-- Cancel Button -->
@@ -98,19 +101,6 @@
                         class="mx-2 font-car text-md font-medium text-gray-700 border border-blue-400 p-2 rounded-md">Rs. Y</span>
                 </p>
             </div>
-            <div id="mobile_submit_button" class="mt-12 w-full md:hidden  ">
-                <button type="submit"
-                    class="text-white bg-blue-400 p-3 w-full rounded-lg font-bold hover:bg-black shadow-xl hover:shadow-none ">
-                    Book Now
-                </button>
-            </div>
-            <!-- Mobile Cancel Button -->
-            <div class="mt-4 w-full md:hidden">
-                <button type="button" onclick="history.back()"
-                    class="text-white bg-red-500 p-3 w-full rounded-lg font-bold hover:bg-red-700 shadow-xl hover:shadow-none ">
-                    Cancel
-                </button>
-            </div>
         </div>
     </div>
 </div>
@@ -118,6 +108,7 @@
 <script>
     // Fetch the price per day from the blade file (cars->price)
     const pricePerDay = {{ $cars->price }};
+    const submitButton = document.getElementById('submit_button');
 
     document.getElementById('start_date').addEventListener('change', calculateDurationAndPrice);
     document.getElementById('end_date').addEventListener('change', calculateDurationAndPrice);
@@ -126,17 +117,30 @@
         const startDate = new Date(document.getElementById('start_date').value);
         const endDate = new Date(document.getElementById('end_date').value);
 
-        if (startDate && endDate && startDate <= endDate) {
-            // Calculate the difference in time (milliseconds) and then convert to days
-            const timeDifference = endDate - startDate;
-            const daysDifference = timeDifference / (1000 * 3600 * 24) + 1;
+        if (startDate && endDate) {
+            if (startDate <= endDate) {
+                // Enable submit button if dates are valid
+                submitButton.disabled = false;
 
-            // Calculate the total price
-            const totalPrice = daysDifference * pricePerDay;
+                // Calculate the difference in time (milliseconds) and then convert to days
+                const timeDifference = endDate - startDate;
+                const daysDifference = timeDifference / (1000 * 3600 * 24) + 1;
 
-            // Update the DOM
-            document.getElementById('duration').querySelector('span').innerText = `${daysDifference} days`;
-            document.getElementById('total-price').querySelector('span').innerText = `Rs. ${totalPrice.toLocaleString()}`;
+                // Calculate the total price
+                const totalPrice = daysDifference * pricePerDay;
+
+                // Update the DOM
+                document.getElementById('duration').querySelector('span').innerText = `${daysDifference} days`;
+                document.getElementById('total-price').querySelector('span').innerText = `Rs. ${totalPrice.toLocaleString()}`;
+
+                // Update hidden inputs for submission
+                document.getElementById('total_price_input').value = totalPrice;
+                document.getElementById('duration_input').value = daysDifference;
+            } else {
+                // Disable submit button if end date is before start date
+                submitButton.disabled = true;
+                alert('End date must be after the start date.');
+            }
         }
     }
 </script>
