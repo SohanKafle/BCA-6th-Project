@@ -21,25 +21,47 @@ class CarController extends Controller
     }
     public function update(Request $request, $id)
     {
-        //dd($request->all());
-        $data = $request->validate([
-            'car_no' => 'required|integer',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'photopath' => 'required|image',
-            'price' => 'required|numeric',
-            'availability' => 'required|numeric'
-        ]);
-        $car = Car::find($id);
-        $data['photopath'] = $car->photopath;
-        if ($request->hasFile('photopath')) {
-            $photoname = time() . '.' . $request->photopath->extension();
-            $request->photopath->move(public_path('images/cars'), $photoname);
-            unlink(public_path('image/cars/' . $car->photopath));
-            $data['photopath'] = $photoname;
+    // Validate incoming request data
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|integer|min:0',
+        'availability' => 'required|integer|min:0',
+        'car_no' => 'nullable',
+        'photopath' => 'nullable|image',  // Validate image file
+    ]);
+
+    // Find the car by ID, if not found, return an error
+    $car = Car::find($id);
+    if (!$car) {
+        return redirect()->route('cars.index')->with('error', 'Car not found.');
+    }
+
+    // Set the default photopath to the existing one
+    $data['photopath'] = $car->photopath;
+
+    // Check if a new image has been uploaded
+    if ($request->hasFile('photopath')) {
+        // Create a unique filename for the new image
+        $photoname = time() . '.' . $request->photopath->extension();
+        
+        // Move the new image to the public images directory
+        $request->photopath->move(public_path('uploads/cars'), $photoname);
+        
+        // Delete the old image file, but only if it exists
+        if (file_exists(public_path('uploads/cars/' . $car->photopath))) {
+            unlink(public_path('uploads/cars/' . $car->photopath));
         }
-        $car->update($data);
-        return redirect()->route('cars.index')->with('success', 'Car updated successfully.');
+
+        // Update the photopath to the new image
+        $data['photopath'] = $photoname;
+    }
+
+    // Update the car with the new data
+    $car->update($data);
+
+    // Redirect to cars index with a success message
+    return redirect()->route('cars.index')->with('success', 'Car updated successfully.');
     }
     public function store(Request $request)
     {
@@ -49,7 +71,7 @@ class CarController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'availabilty' => 'required|numeric',
+            'availability' => 'required|numeric',
             'photopath' => 'required|image',
         ]);
     
@@ -71,7 +93,7 @@ class CarController extends Controller
             $car->name = $request->input('name');
             $car->description = $request->input('description');
             $car->price = $request->input('price');
-            $car->availabilty = $request->input('availabilty');
+            $car->availability = $request->input('availability');
             $car->photopath = $filePath . '/' . $fileName; // Save the relative path to the file
             $car->save();
     
@@ -87,4 +109,17 @@ class CarController extends Controller
         $car->delete();
         return redirect()->route('cars.index')->with('success', 'Car deleted successfully.');
     }
+    
+    public function show($id)
+    {
+        $car = Car::find($id);
+    
+        if (!$car) {
+            return redirect()->route('cars.index')->with('error', 'Car not found');
+        }
+    
+        return \view('cars.view', compact('car'));
+    }
+    
+    
 }

@@ -40,7 +40,7 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <input type="text" class="border p-3 w-full rounded-lg" name="availabilty" placeholder="Availabilty" value="{{old('availabilty')}}">
+                <input type="text" class="border p-3 w-full rounded-lg" name="availability" placeholder="Availability" value="{{old('availability')}}">
                 @error('priority')
                     <div class="text-red-500 mt-2 text-sm">
                         {{$message}}

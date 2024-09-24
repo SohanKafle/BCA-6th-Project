@@ -20,7 +20,7 @@ Route::get('/search',[PagesController::class,'search'])->name('search');
 
 Route::post('/users/book/{id}', [UserController::class, 'book'])->name('users.book');
 Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::post('/profile/update', [UserController::class, 'update'])->name('users.update');
+Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('users.update');
 Route::get('users/index',[UserController::class,'index'])->name('users.index');
 Route::get('users/car',[UserController::class,'car'])->name('users.car');
 Route::get('users/editprofile',[UserController::class,'editprofile'])->name('users.editprofile');
@@ -32,6 +32,9 @@ Route::get('users/search',[UserController::class,'search'])->name('users.search'
 
 
 Route::get('useradmin/index',[UseradminController::class,'index'])->name('useradmin.index');
+Route::get('useradmin/edit/{id}',[UseradminController::class,'edit'])->name('useradmin.edit');
+Route::post('useradmin/update/{id}',[UseradminController::class,'update'])->name('useradmin.update');
+Route::get('useradmin/delete/{id}',[UseradminController::class,'delete'])->name('useradmin.delete');
 Route::post('/contact-form', [UserController::class, 'sendContactForm'])->name('users.sendContactForm');
 
 
@@ -44,6 +47,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('/cars/{id}/edit',[CarController::class,'edit'])->name('cars.edit');
     Route::post('/cars/{id}/update',[CarController::class,'update'])->name('cars.update');
     Route::get('/cars/{id}/delete',[CarController::class,'delete'])->name('cars.delete');
+    Route::get('/cars/{id}/view', [CarController::class, 'show'])->name('cars.view');
     
 });
 

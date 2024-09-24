@@ -10,7 +10,6 @@
                     
                     <th class="border p-3">Name</th>
                     <th class="border p-3">Email</th>
-                    <th class="border p-3">D.O.B</th>
                     <th class="border p-3">Phone</th>
                     <th class="border p-3">Image</th>
                     <th class="border p-3">Action</th>
@@ -23,13 +22,12 @@
                     
                     <td class="border p-3">{{ $user->name }}</td>
                     <td class="border p-3">{{ $user->email }}</td>
-                    <td class="border p-3">{{ $user->dob }}</td>
-                    <td class="border p-3">{{ $user->phone }}</td>
+                    <td class="border p-3">{{ $user->phonenumber }}</td>
                     <td class="border p-3">
-                        <img src="{{ asset($user->photopath) }}" class="w-24" alt="{{ $user->name }}">
+                        <img src="{{ asset('uploads/users/' . $user->photopath) }}" class="w-24" alt="{{ $user->name }}">
                     </td>
                     <td class="border p-3">
-                        <a href="{{ route('users.edit', $user->id) }}" class="bg-blue-500 text-white p-2 rounded-lg">Edit</a>
+                        <a href="{{ route('useradmin.edit', $user->id) }}" class="bg-blue-500 text-white p-2 rounded-lg">Edit</a>
                         <a href="" class="bg-red-500 text-white p-2 rounded-lg">Delete</a>
                     </td>
                 </tr>

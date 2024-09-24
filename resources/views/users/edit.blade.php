@@ -1,82 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
+@extends('layouts.user')
+@section('content')
 
-    <!-- Header Section -->
-    <header class="bg-gray-800 h-16 flex items-center justify-center text-white">
-        <h1 class="text-2xl font-semibold">Edit Profile</h1>
-    </header>
+<div class="container mx-auto px-4 py-8 mt-24">
+    <h2 class="font-bold text-4xl text-amber-600 mb-6">Edit User</h2>
+    <hr class="h-1 bg-amber-600 mb-8">
 
-    <!-- Edit Profile Form -->
-    <main class="mt-10">
-        <div class="bg-white border border-gray-200 rounded-2xl shadow-lg max-w-2xl mx-auto p-8">
-
-            <!-- Profile Image Upload Section -->
-            <div class="flex justify-center mb-6">
-                <img src="{{ $user->photopath ? asset('images/users/'.$user->photopath) : 'path_to_default_image.jpg' }}" 
-                     alt="Profile Image" class="h-36 w-36 rounded-full object-cover shadow-md">
+    <div class="bg-white shadow-md rounded-lg p-8">
+        <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            @csrf
+            <div class="mb-6">
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" class="border p-3 w-full rounded-lg focus:ring-amber-600 focus:border-amber-600" placeholder="Enter name" value="{{ old('name', $user->name) }}">
+                @error('name')
+                    <span class="text-red-500 mt-2 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
-            <form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
-                @csrf <!-- Laravel's built-in CSRF token protection -->
+            <div class="mb-6">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="border p-3 w-full rounded-lg focus:ring-amber-600 focus:border-amber-600" placeholder="Enter email" value="{{ old('email', $user->email) }}">
+                @error('email')
+                    <span class="text-red-500 mt-2 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-                <!-- Upload Profile Image -->
-                <div class="text-center mb-6">
-                    <input type="file" name="photopath" class="py-2 px-4 bg-gray-600 text-white rounded-full shadow hover:bg-blue-600 transition-colors">
-                </div>
+            <div class="mb-6">
+                <label for="phonenumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input type="text" id="phonenumber" name="phonenumber" class="border p-3 w-full rounded-lg focus:ring-amber-600 focus:border-amber-600" placeholder="Enter phone number" value="{{ old('phonenumber', $user->phonenumber) }}">
+                @error('phonenumber')
+                    <span class="text-red-500 mt-2 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
 
-                <!-- Name Field -->
-                <div>
-                    <label for="name" class="block text-lg font-semibold text-gray-700">Name</label>
-                    <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" 
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                </div>
-
-                <!-- Email Field -->
-                <div>
-                    <label for="email" class="block text-lg font-semibold text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" 
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                </div>
-
-                <!-- Phone Number Field -->
-                <div>
-                    <label for="phone" class="block text-lg font-semibold text-gray-700">Phone Number</label>
-                    <input type="text" id="phone" name="phone" value="{{ old('phone', $user->phone) }}" 
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                </div>
-
-                     <!-- Date of Birth Field -->
-                     <div>
-                        <label for="dob" class="block text-lg font-semibold text-gray-700">DOB</label>
-                        <input type="text" id="dob" name="dob" value="{{ old('dob', $user->dob) }}" 
-                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+            <div class="mb-6">
+                <label for="photopath" class="block text-sm font-medium text-gray-700">Current Picture</label>
+                @if($user->photopath)
+                    <div class="mb-4">
+                        <img src="{{ asset('uploads/users/' . $user->photopath) }}" alt="Current Profile Picture" class="h-20 w-20  object-cover">
                     </div>
-
-                <!-- Submit Button -->
-                <div class="text-center">
-                    <button type="submit" class="py-2 px-6 bg-gray-800 text-white rounded-full shadow-md hover:bg-blue-600 transition-colors font-semibold">
-                        Save Changes
-                    </button>
-                </div>
-            </form>
-
-            <!-- Cancel Button -->
-            <div class="text-center mt-4">
-                <a href="{{ route('users.index') }}" class="inline-block py-2 px-6 bg-gray-600 text-white rounded-full shadow-md hover:bg-red-600 transition-colors font-semibold">
-                    Cancel
-                </a>
+                @endif
+                <input type="file" id="photopath" name="photopath" class="border p-3 w-full rounded-lg focus:ring-amber-600 focus:border-amber-600">
+                @error('photopath')
+                    <span class="text-red-500 mt-2 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
-        </div>
-    </main>
+            <div class="flex justify-center gap-5 mt-8">
+                <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white py-3 px-8 rounded-lg transition ease-in-out duration-150">Update</button>
+                <a href="{{ route('users.profile', $user->id) }}" class="bg-gray-500 hover:bg-gray-600 text-white py-3 px-7 rounded-lg transition ease-in-out duration-150">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 
-</body>
-</html>
+@endsection

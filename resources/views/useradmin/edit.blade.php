@@ -4,7 +4,7 @@
     <hr class="h-1 bg-amber-600">
 
     <div class="mt-10">
-        <form action="{{route('cars.update',$user->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('users.update',$user->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
           
             <div class="mb-5">
@@ -23,17 +23,9 @@
                     </div>
                 @enderror
             </div>
-            <div class="mb-5">
-                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="D.O.B" name="price" value="{{$user->dob}}">
-                @error('dob')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{$message}}
-                    </div>
-                @enderror
-            </div>
 
             <div class="mb-5">
-                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Phone No" name="phone" value="{{$user->phone}}">
+                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Phone No" name="phone" value="{{$user->phonenumber}}">
                 @error('phone')
                     <div class="text-red-500 mt-2 text-sm">
                         {{$message}}
@@ -42,7 +34,7 @@
             </div>
 
             <p>Current Picture</p>
-            <img src="{{asset('image/users/'.$user->photopath)}}" class="w-56" alt="">
+            <img src="{{asset('uploads/users/'.$user->photopath)}}" class="w-56" alt="">
             <div class="mb-5">
                 <input type="file" class="w-full p-3 border border-gray-300 rounded-lg" name="photopath">
                 @error('photopath')
@@ -55,7 +47,7 @@
 
             <div class="mb-5 flex gap-5 justify-center">
                 <button class="bg-amber-600 text-white p-3 rounded-lg">Update User</button>
-                <a href="{{route('users.index')}}" class="bg-gray-600 text-white p-3 rounded-lg">Cancel</a>
+                <a href="{{route('useradmin.index')}}" class="bg-gray-600 text-white p-3 rounded-lg">Cancel</a>
             </div>
         </form>
     </div>

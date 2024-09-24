@@ -67,36 +67,51 @@ class UserController extends Controller
 
         return view('users.book', compact('cars', 'user', 'relatedCars'));
     }
-    public function edit($id)
+    public function edit()
     {
-        $user = Auth::user('id');
+        $user = Auth::user();
         return view('users.edit', compact('user'));
     }
     public function update(Request $request, $id)
     {
-        //dd($request->all());
-        $user = User::find($id);
-        $data = request()->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'photopath' => 'image',
-            'dob' => 'required',
-            'phonenumber' => 'required',
+        // Validate incoming request data
+        $data = $request->validate([
+            'name' => 'required|string|max:255',  // Name is required
+            'email' => 'required|email|unique:users,email,' . $id,  // Email should be unique except for the current user
+            'photopath' => 'nullable|image|',  // Photo is optional, max size 2MB
+            'phonenumber' => 'nullable|string|max:15',  // Optional phone number
         ]);
-        $data['photopath'] = $user->photopath;
+
+        // Find the user by ID, if not found, return an error
+        $user = User::find($id);
+        
+
+        // Check if a new image has been uploaded
         if ($request->hasFile('photopath')) {
+            // Create a unique filename for the new image
             $photoname = time() . '.' . $request->photopath->extension();
-            $request->photopath->move(public_path('images/users'), $photoname);
-            unlink(public_path('images/users/' . $user->photopath));
+
+            // Move the new image to the public images directory
+            $request->photopath->move(public_path('uploads/users'), $photoname);
+
+            // Delete the old image file, but only if it exists
+            if ($user->photopath && file_exists(public_path('uploads/users/' . $user->photopath))) {
+                unlink(public_path('uploads/users/' . $user->photopath));
+            }
+
+            // Update the photopath to the new image
             $data['photopath'] = $photoname;
+        } else {
+            // If no new image is uploaded, keep the existing one
+            $data['photopath'] = $user->photopath;
         }
 
-
+        // Update the user with the new data
         $user->update($data);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        // Redirect to user admin index with a success message
+        return redirect()->route('users.profile',$user->id)->with('success', 'User updated successfully.');
     }
-
 
     public function sendContactForm(Request $request)
     {

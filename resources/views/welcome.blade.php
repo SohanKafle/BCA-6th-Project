@@ -58,42 +58,41 @@
     </div>
 </section>
 
-    <!-- Properties -->
-    <section class="properties container mx-auto py-16" id="properties">
-
-        <div class="mx-auto max-w-screen-xl">
-            <div class="flex align-middle justify-center">
-                <hr class="mt-8 h-0.5 w-2/5 bg-pink-500">
-                <p class="my-2 mx-8 p-2 font-car font-bold text-black-400 text-lg">CARS</p>
-                <hr class="mt-8 h-0.5 w-2/5 bg-pink-500">
-            </div>
-            <div class="md:mr-16 mr-4 mb-4 flex justify-end">
-                <a href="{{ route('car') }}">
-                    <button class="border-2 border-black font-medium text-black w-16 p-1 rounded-md hover:bg-blue-400 hover:text-white">See All</button>
-                </a>
-            </div>
+   <!-- Properties -->
+<section class="properties container mx-auto py-16" id="properties">
+    <div class="mx-auto max-w-screen-xl">
+        <div class="flex align-middle justify-center">
+            <hr class="mt-8 h-0.5 w-2/5 bg-pink-500">
+            <p class="my-2 mx-8 p-2 font-car font-bold text-black-400 text-lg">CARS</p>
+            <hr class="mt-8 h-0.5 w-2/5 bg-pink-500">
         </div>
-    
-        <div class="grid grid-cols-3 gap-10 my-10 px-24">
-            @foreach($cars as $car)
-                <div class="p-2 rounded-lg shadow">
-                    <img src="{{ asset($car->photopath) }}" alt="car" class="w-full h-64 object-cover">
-    
-                    <div class="p-2">
-                        <h2 class="text-xl font-semibold">Car No: {{ $car->car_no }}</h2>
-                        <h2 class="text-xl font-bold">{{ $car->name }}</h2>
-    
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="text-xl font-thin">Rs. {{ $car->price }}</span>
-                            <a href="{{ route('login') }}">
-                                <button class="bg-blue-500 hover:bg-blue-800 text-white px-2 py-1 rounded-lg">Book Now</button>
-                            </a>
-                        </div>
+        <div class="md:mr-16 mr-4 mb-4 flex justify-end">
+            <a href="{{ route('car') }}">
+                <button class="border-2 border-black font-medium text-black w-24 p-2 rounded-md hover:bg-blue-400 hover:text-white transition duration-300">See All</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 my-10 px-4 md:px-24">
+        @foreach($cars as $car)
+            <div class="p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <img src="{{ asset($car->photopath) }}" alt="car" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-lg md:text-xl font-semibold">Car No: {{ $car->car_no }}</h2>
+                    <h2 class="text-lg md:text-xl font-bold">{{ $car->name }}</h2>
+
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-xl text-orange-500 font-medium">Rs. {{ $car->price }}</span>
+                        <a href="{{ route('login') }}">
+                            <button class="bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded-lg transition duration-300">Book Now</button>
+                        </a>
                     </div>
                 </div>
-            @endforeach
-        </div>
-    </section>
+            </div>
+        @endforeach
+    </div>
+</section>
+
     
 
 <!-- About -->

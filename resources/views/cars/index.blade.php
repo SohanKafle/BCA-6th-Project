@@ -25,14 +25,14 @@
                     <td class="border p-3">{{ $car->car_no }}</td>
                     <td class="border p-3">{{ $car->name }}</td>
                     <td class="border p-3">{{ $car->price }}</td>
-                    <td class="border p-3">{{ $car->availabilty ? 'Available' : 'Not Available' }}</td>
+                    <td class="border p-3">{{ $car->availability ? 'Available' : 'Not Available' }}</td>
                     <td class="border p-3">
                         <img src="{{ asset($car->photopath) }}" class="w-24" alt="{{ $car->name }}">
                     </td>
                     <td class="border p-3">
                         <a href="{{ route('cars.edit', $car->id) }}" class="bg-blue-500 text-white p-2 rounded-lg">Edit</a>
                         <a href="{{ route('cars.delete', $car->id) }}" class="bg-red-500 text-white p-2 rounded-lg">Delete</a>
-                        <a href="" class="bg-green-500 text-white p-2 rounded-lg">View</a>
+                        <a href="{{ route('cars.view', $car->id) }}" class="bg-green-500 text-white p-2 rounded-lg">View</a>
                     </td>
                 </tr>
             @endforeach
