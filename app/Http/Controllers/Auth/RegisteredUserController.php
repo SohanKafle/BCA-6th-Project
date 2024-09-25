@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
@@ -32,26 +31,27 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'phone' => ['required', 'integer', 'max:15'],
+            'phonenumber' => ['required', 'integer'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photopath' => ['nullable', 'image'],
             'terms' => ['accepted'],
         ]);
 
-        $path = $request->file('photo') ? $request->file('photo')->store('photos', 'public') : null;
+        $photoname = time() . '.' . $request->photopath->extension();
+        $request->photopath->move(public_path('uploads/users'), $photoname);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phonenumber' => $request->phonenumber,
             'password' => Hash::make($request->password),
-            'photo' => $path,
+            'photopath' => $photoname,
         ]);
 
         event(new Registered($user));
+        
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        // Redirect to the login page after successful registration
+        return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
     }
 }

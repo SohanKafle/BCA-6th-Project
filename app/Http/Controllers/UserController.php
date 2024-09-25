@@ -113,34 +113,33 @@ class UserController extends Controller
         return redirect()->route('users.profile',$user->id)->with('success', 'User updated successfully.');
     }
 
-    public function sendContactForm(Request $request)
-    {
-        // Validate form data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'city' => 'required|string|max:255', // Change 'city' validation to a standard string validation
-            'message' => 'required|string',
-        ]);
-
-        // Prepare email data
-        $emailData = [
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'city' => $request->input('city'), // You can include city in your email as well
-            'message' => $request->input('message'),
-        ];
-
-
-
-        // Send the email using the Mailable class
-        Mail::to('kaflesohan1@gmail.com')->send(new ContactFormMail($emailData));
-
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Your message has been sent successfully!');
-    }
+        public function sendMail(Request $request)
+        {
+            // Validate the request
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'phone' => 'required|numeric',
+                'message' => 'required|string',
+            ]);
+    
+            // Prepare the email body
+            $body = "Name: {$request->name}\n"
+                  . "City: {$request->city}\n"
+                  . "Phone: {$request->phone}\n"
+                  . "Email: {$request->email}\n"
+                  . "Message: {$request->message}";
+    
+            // Send email
+            Mail::raw($body, function ($message) use ($request) {
+                $message->to('kaflesohan1@gmail.com') 
+                        ->subject('Contact Form Submission')
+                        ->from($request->email, $request->name);
+            });
+    
+            // Redirect back with success message
+            return back()->with('success', 'Your message has been sent successfully!');
+        }    
 
     public function search(Request $request)
     {

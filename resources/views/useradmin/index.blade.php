@@ -28,7 +28,7 @@
                     </td>
                     <td class="border p-3">
                         <a href="{{ route('useradmin.edit', $user->id) }}" class="bg-blue-500 text-white p-2 rounded-lg">Edit</a>
-                        <a href="" class="bg-red-500 text-white p-2 rounded-lg">Delete</a>
+                        <a href="{{ route('useradmin.delete', $user->id) }}" class="bg-red-500 text-white p-2 rounded-lg">Delete</a>
                     </td>
                 </tr>
             @endforeach

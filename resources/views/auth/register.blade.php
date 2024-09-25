@@ -28,8 +28,8 @@
                     @error('email')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
-                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Phone Number" name="phone">
-                    @error('phone')
+                    <input type="text" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Phone Number" name="phonenumber">
+                    @error('phonenumber')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                     <input type="password" class="border border-gray-300 p-2 w-full mt-4 rounded-lg" placeholder="Password" name="password">
@@ -41,9 +41,10 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                     <div class="border border-gray-300 p-2 w-full mt-4 rounded-lg">
-                        <label for="photo" class="block text-gray-700">Upload Photo</label>
-                        <input type="file" id="photo" name="photo" class="w-full mt-2" accept="image/*">
+                        <label for="photopath" class="block text-gray-700">Upload Photo</label>
+                        <input type="file" id="photopath" name="photopath" class="w-full mt-2" accept="image/*">
                     </div>
+                    
                     <div class="mb-4 flex items-center mt-4">
                         <input type="checkbox" name="terms" class="mr-2 rounded">
                         <label class="block text-gray-700">I agree to the Terms and Privacy Policy</label>

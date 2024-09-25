@@ -27,6 +27,7 @@ Route::get('users/editprofile',[UserController::class,'editprofile'])->name('use
 Route::get('/profile/{id}',[UserController::class,'profile'])->name('users.profile');
 Route::get('users/about',[UserController::class,'about'])->name('users.about');
 Route::get('users/contact',[UserController::class,'contact'])->name('users.contact');
+Route::post('/contact/send', [UserController::class, 'sendMail'])->name('users.sendContactForm');
 Route::get('users/services',[UserController::class,'services'])->name('users.services');
 Route::get('users/search',[UserController::class,'search'])->name('users.search');
 Route::get('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment');
@@ -37,7 +38,6 @@ Route::get('useradmin/index',[UseradminController::class,'index'])->name('userad
 Route::get('useradmin/edit/{id}',[UseradminController::class,'edit'])->name('useradmin.edit');
 Route::post('useradmin/update/{id}',[UseradminController::class,'update'])->name('useradmin.update');
 Route::get('useradmin/delete/{id}',[UseradminController::class,'delete'])->name('useradmin.delete');
-Route::post('/contact-form', [UserController::class, 'sendContactForm'])->name('users.sendContactForm');
 
 
 Route::middleware(['auth','admin'])->group(function () {
@@ -65,5 +65,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

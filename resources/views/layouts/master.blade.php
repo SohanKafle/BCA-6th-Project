@@ -58,7 +58,7 @@
         <nav class="bg-gray-100 shadow-md fixed top-0 left-0 w-full z-50">
             <div class="container mx-auto flex justify-between items-center py-4 px-4 md:px-0">
                 <!-- Logo -->
-                <a href="{{route('home')}}"> <img src="https://github.com/SohanKafle/BCA-4th-Project/blob/main/img/logoo.png?raw=true" alt="CarRental Logo" class="h-16"></a>
+                <a href="{{route('home')}}"> <img src="{{ asset('img/logoo.png') }}" alt="CarRental Logo" class="h-16"></a>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">

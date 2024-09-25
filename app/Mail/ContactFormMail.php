@@ -31,7 +31,7 @@ class ContactFormMail extends Mailable
     {
         return new Envelope(
             subject: 'New Contact Form Submission',
-            from: new Address('kaflesohan1@gmail.com', 'Laravel') // Use Address class
+            from: new Address(config('mail.from.address'), config('mail.from.name')) // This will pull from .env
         );
     }
 

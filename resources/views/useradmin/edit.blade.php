@@ -4,7 +4,7 @@
     <hr class="h-1 bg-amber-600">
 
     <div class="mt-10">
-        <form action="{{route('users.update',$user->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('useradmin.update',$user->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
           
             <div class="mb-5">
@@ -25,8 +25,8 @@
             </div>
 
             <div class="mb-5">
-                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Phone No" name="phone" value="{{$user->phonenumber}}">
-                @error('phone')
+                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Phone No" name="phonenumber" value="{{$user->phonenumber}}">
+                @error('phonenumber')
                     <div class="text-red-500 mt-2 text-sm">
                         {{$message}}
                     </div>

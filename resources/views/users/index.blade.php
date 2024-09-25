@@ -115,7 +115,7 @@
                 <p class="text-gray-800 mb-4">Get yourself a best quality car at a best rate quoted anytime.</p>
                 <p class="text-gray-800 mb-6">We are Nepal's Largest Car Rental Company. With hundreds of fleets and
                     best customer service, we offer you the best of class service.</p>
-                <a href="{{ route('about') }}"
+                <a href="{{ route('users.about') }}"
                     class="inline-block bg-blue-500  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">Read
                     More</a>
             </div>
