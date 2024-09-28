@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
@@ -32,12 +33,14 @@ Route::get('users/services',[UserController::class,'services'])->name('users.ser
 Route::get('users/search',[UserController::class,'search'])->name('users.search');
 Route::get('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment');
 Route::post('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment.post');
+Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+
 
 
 Route::get('useradmin/index',[UseradminController::class,'index'])->name('useradmin.index');
 Route::get('useradmin/edit/{id}',[UseradminController::class,'edit'])->name('useradmin.edit');
 Route::post('useradmin/update/{id}',[UseradminController::class,'update'])->name('useradmin.update');
-Route::get('useradmin/delete/{id}',[UseradminController::class,'delete'])->name('useradmin.delete');
+Route::delete('useradmin/delete/{id}',[UseradminController::class,'delete'])->name('useradmin.delete');
 
 
 Route::middleware(['auth','admin'])->group(function () {

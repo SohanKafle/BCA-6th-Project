@@ -17,11 +17,10 @@ class DashboardController extends Controller
         // Get total number of cars
         $totalCars = Car::count();
 
-        // Get available cars based on the 'availability' status
-        $availableCars = Car::where('availability', 1)->count();
+        $availableCars = Car::where('availability', '>', 0)->count();
 
-        // Calculate booked cars
-        $bookedCars = $totalCars - $availableCars;
+        // Calculate booked cars (assumes cars with availability = 0 are booked)
+        $bookedCars = Car::where('availability', 0)->count();
 
         // Assuming total visits is fetched from a static or external source
         $totalVisits = 30000; // Replace this with actual logic if needed

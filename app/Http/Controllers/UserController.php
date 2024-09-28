@@ -56,17 +56,24 @@ class UserController extends Controller
     }
     public function book($id)
     {
+        // Get the car by ID
         $cars = Car::find($id);
+        
+        // Get the authenticated user
         $user = Auth::user('id');
-
-        $relatedCars = Car::where('name', $cars->name)
+        
+        // Define the price range (e.g., +/- 10% of the current car price)
+        $priceRangeMin = $cars->price * 0.9;
+        $priceRangeMax = $cars->price * 1.1;
+    
+        // Fetch related cars within the price range, excluding the current car
+        $relatedCars = Car::whereBetween('price', [$priceRangeMin, $priceRangeMax])
             ->where('id', '!=', $id)
             ->get();
-        $duration = $cars->duration;
-
-
+    
         return view('users.book', compact('cars', 'user', 'relatedCars'));
     }
+    
     public function edit()
     {
         $user = Auth::user();
@@ -190,5 +197,6 @@ class UserController extends Controller
 
     return view('users.selectpayment', compact('paymentMethods', 'user', 'cars'));
 }
+
     
 }

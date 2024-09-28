@@ -37,34 +37,28 @@
                         <div class="sm:col-span-3">
                             <label for="full-name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
                             <div class="mt-2">
-                                <input type="text" name="full-name" id="full-name" value="{{ $user->name }}"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
+                                <input type="text" name="full-name" id="full-name" value="{{ $user->name }}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
                         <div class="sm:col-span-3">
                             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                             <div class="mt-2">
-                                <input type="text" name="email" id="email" value="{{ $user->email }}"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
+                                <input type="text" name="email" id="email" value="{{ $user->email }}" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
                         <div class="sm:col-span-3">
                             <label for="start_date" class="block text-sm font-medium leading-6 text-gray-900">Start at</label>
                             <div class="mt-2">
-                                <input type="date" name="start_date" id="start_date"
-                                       class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6"
-                                       min="{{ \Carbon\Carbon::today()->toDateString() }}" />
+                                <input type="date" name="start_date" id="start_date" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6" min="{{ \Carbon\Carbon::today()->toDateString() }}" />
                             </div>
                         </div>
-                        
+
                         <div class="sm:col-span-3">
                             <label for="end_date" class="block text-sm font-medium leading-6 text-gray-900">End at</label>
                             <div class="mt-2">
-                                <input type="date" name="end_date" id="end_date"
-                                       class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6"
-                                       min="{{ \Carbon\Carbon::today()->toDateString() }}" />
+                                <input type="date" name="end_date" id="end_date" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pr-400 sm:text-sm sm:leading-6" min="{{ \Carbon\Carbon::today()->toDateString() }}" />
                             </div>
                         </div>
                     </div>
@@ -91,23 +85,61 @@
             <p class="ms-4 max-w-full font-bold text-xl mt-3 md:block hidden">{{ $cars->name }}</p>
 
             <div class="w-full mt-8 ms-8">
-                <p id="duration" class="font-car text-gray-600 text-lg ms-2">Duration: <span
-                        class="mx-2 f text-md font-medium text-gray-700 border border-blue-400 p-2 rounded-md">X days</span>
+                <p id="duration" class="font-car text-gray-600 text-lg ms-2">Duration: <span class="mx-2 f text-md font-medium text-gray-700 border border-blue-400 p-2 rounded-md">X days</span>
                 </p>
             </div>
 
             <div class="w-full mt-8 ms-8">
-                <p id="total-price" class="font-car text-gray-600 text-lg ms-2">Total Price: <span
-                        class="mx-2 font-car text-md font-medium text-gray-700 border border-blue-400 p-2 rounded-md">Rs. Y</span>
+                <p id="total-price" class="font-car text-gray-600 text-lg ms-2">Total Price: <span class="mx-2 font-car text-md font-medium text-gray-700 border border-blue-400 p-2 rounded-md">Rs. Y</span>
                 </p>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Related Cars Section -->
+<h1 class="text-3xl font-bold text-center mt-10">Recommended Cars</h1>
+<hr class="h-1 bg-amber-600 mb-8">
+
+<section class="properties container mx-auto" id="properties">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 px-8">
+        @if($relatedCars->isEmpty())
+            <div class="flex justify-center items-center w-full col-span-full">
+                <p class="text-red-700 mb-10 text-center">No similar cars found in this price range.</p>
+            </div>
+        @else
+            @foreach($relatedCars as $related)
+                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300">
+                    <img src="{{ asset($related->photopath) }}" alt="car" class="w-full h-64 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ $related->name }}</h2>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-semibold text-orange-500">Rs. {{ number_format($related->price) }}</span>
+                            <!-- Form to make POST request for booking -->
+                            <form action="{{ route('users.book', $related->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="car_id" value="{{ $related->id }}">
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                    Book Now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    </div>
+    
+</section>
+<br>
+
 <script>
     // Fetch the price per day from the blade file (cars->price)
-    const pricePerDay = {{ $cars->price }};
+    const pricePerDay = {
+        {
+            $cars - > price
+        }
+    };
     const submitButton = document.getElementById('submit_button');
 
     document.getElementById('start_date').addEventListener('change', calculateDurationAndPrice);
@@ -143,6 +175,7 @@
             }
         }
     }
+
 </script>
 
 @endsection

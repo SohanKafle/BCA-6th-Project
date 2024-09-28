@@ -97,7 +97,7 @@ class CarController extends Controller
             $car->photopath = $filePath . '/' . $fileName; // Save the relative path to the file
             $car->save();
     
-            return redirect()->route('cars.index')->with('success', 'Car created successfully!');
+            return redirect()->route('cars.index')->with('success', 'Car added successfully!');
         }
     
         return back()->withErrors('File upload failed.');
