@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SelectpaymentController;
 use App\Http\Controllers\UseradminController;
 use App\Http\Controllers\UserController;
 use App\Models\Car;
@@ -31,9 +33,16 @@ Route::get('users/contact',[UserController::class,'contact'])->name('users.conta
 Route::post('/contact/send', [UserController::class, 'sendMail'])->name('users.sendContactForm');
 Route::get('users/services',[UserController::class,'services'])->name('users.services');
 Route::get('users/search',[UserController::class,'search'])->name('users.search');
-Route::get('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment');
-Route::post('users/selectpayment', [UserController::class, 'selectPaymentMethod'])->name('users.selectpayment.post');
-Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+// Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+Route::get('users/{id}/selectpayment', [SelectpaymentController::class, 'selectpayment'])->name('users.selectpayment');
+Route::post('users/{id}/store', [SelectpaymentController::class, 'store'])->name('users.store');
+
+Route::post('users/{id}/stores', [BookController::class, 'stores'])->name('users.stores');
+
+Route::get('/book/success', [BookController::class, 'success'])->name('book.success');
+Route::get('/book/failure', [BookController::class, 'failure'])->name('book.failure');
+
+Route::get('users/pay', [BookController::class, 'index'])->name('users.pay');
 
 
 

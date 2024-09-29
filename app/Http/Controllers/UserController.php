@@ -183,20 +183,6 @@ class UserController extends Controller
         return view('users.search', compact('properties', 'user'));
     }
 
-    public function selectPaymentMethod()
-{
-    $paymentMethods = [
-        ['id' => 1, 'name' => 'eSewa', 'icon' => 'fab fa-cc-esewa'], // Example for eSewa
-        ['id' => 2, 'name' => 'PayPal', 'icon' => 'fab fa-cc-paypal'],
-        ['id' => 3, 'name' => 'Bank Transfer', 'icon' => 'fas fa-university'],
-        ['id' => 4, 'name' => 'Credit Card', 'icon' => 'fas fa-credit-card'],
-    ];
-    
-    $user = Auth::user();
-    $cars = Car::get();
-
-    return view('users.selectpayment', compact('paymentMethods', 'user', 'cars'));
-}
 
     
 }

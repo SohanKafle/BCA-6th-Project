@@ -24,7 +24,7 @@
             </div>
 
             <div class="px-6 md:me-8">
-                <form id="reservation_form" action="{{ route('users.selectpayment') }}" method="POST">
+                <form id="reservation_form" action="{{ route('users.store',$cars->id) }}" method="POST">
                     @csrf
                     <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                     <input type="hidden" name="car_id" value="{{ $cars->id }}">
