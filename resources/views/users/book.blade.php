@@ -129,17 +129,12 @@
             @endforeach
         @endif
     </div>
-    
 </section>
 <br>
 
 <script>
     // Fetch the price per day from the blade file (cars->price)
-    const pricePerDay = {
-        {
-            $cars - > price
-        }
-    };
+    const pricePerDay = {{ $cars->price }};
     const submitButton = document.getElementById('submit_button');
 
     document.getElementById('start_date').addEventListener('change', calculateDurationAndPrice);
@@ -149,33 +144,30 @@
         const startDate = new Date(document.getElementById('start_date').value);
         const endDate = new Date(document.getElementById('end_date').value);
 
+        if (startDate) {
+            document.getElementById('end_date').setAttribute('min', document.getElementById('start_date').value);
+        }
+
         if (startDate && endDate) {
             if (startDate <= endDate) {
-                // Enable submit button if dates are valid
                 submitButton.disabled = false;
 
-                // Calculate the difference in time (milliseconds) and then convert to days
                 const timeDifference = endDate - startDate;
                 const daysDifference = timeDifference / (1000 * 3600 * 24) + 1;
 
-                // Calculate the total price
                 const totalPrice = daysDifference * pricePerDay;
 
-                // Update the DOM
                 document.getElementById('duration').querySelector('span').innerText = `${daysDifference} days`;
                 document.getElementById('total-price').querySelector('span').innerText = `Rs. ${totalPrice.toLocaleString()}`;
 
-                // Update hidden inputs for submission
                 document.getElementById('total_price_input').value = totalPrice;
                 document.getElementById('duration_input').value = daysDifference;
             } else {
-                // Disable submit button if end date is before start date
                 submitButton.disabled = true;
                 alert('End date must be after the start date.');
             }
         }
     }
-
 </script>
 
 @endsection
