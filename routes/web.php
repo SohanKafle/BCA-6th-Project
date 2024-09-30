@@ -21,7 +21,8 @@ Route::get('/services', [PagesController::class, 'services'])-> name('services')
 Route::get('/car', [PagesController::class, 'car'])-> name('car');
 Route::get('/search',[PagesController::class,'search'])->name('search');
 
-Route::post('/users/book/{id}', [UserController::class, 'book'])->name('users.book');
+Route::middleware(['auth','user'])->group(function(){
+    Route::post('/users/book/{id}', [UserController::class, 'book'])->name('users.book');
 Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('users.update');
 Route::get('users/index',[UserController::class,'index'])->name('users.index');
@@ -43,6 +44,7 @@ Route::get('/book/success', [BookController::class, 'success'])->name('book.succ
 Route::get('/book/failure', [BookController::class, 'failure'])->name('book.failure');
 
 Route::get('users/pay', [BookController::class, 'index'])->name('users.pay');
+});
 
 
 
@@ -54,7 +56,8 @@ Route::delete('useradmin/delete/{id}',[UseradminController::class,'delete'])->na
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+    Route::get('/notification',[DashboardController::class,'notification'])->name('notification');
+    // Route::get('/notification/{id}',[DashboardController::class,'view'])->name('notification.view');
     Route::get('/cars/index',[CarController::class,'index'])->name('cars.index');
     Route::get('/cars/create',[CarController::class,'create'])->name('cars.create');
     Route::post('/cars/store',[CarController::class,'store'])->name('cars.store');
@@ -62,6 +65,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('/cars/{id}/update',[CarController::class,'update'])->name('cars.update');
     Route::get('/cars/{id}/delete',[CarController::class,'delete'])->name('cars.delete');
     Route::get('/cars/{id}/view', [CarController::class, 'show'])->name('cars.view');
+
     
 });
 

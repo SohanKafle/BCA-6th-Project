@@ -7,7 +7,6 @@
 
         <title>Admin Panel</title>
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -31,10 +30,9 @@
                 <img src="{{ asset('img/adminlogo.png') }}" alt="Admin Logo" class="p-2 m-2 w-10/12 mx-auto mt-5 bg-white rounded-lg shadow-lg ">
                 <div class="mt-5">
                     <a href="{{route('dashboard')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Dashboard</a>
-                    <a href="" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Categories</a>
                     <a href="{{route('cars.index')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Cars</a>
                     <a href="{{route('useradmin.index')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Users</a>
-                    <a href="" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white"></a>
+                    <a href="{{route('notification')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Notification</a>
                    <form id="logout-form" method="post" action="{{route('logout')}}">
                     @csrf
                     </form>

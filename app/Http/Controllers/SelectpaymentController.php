@@ -47,7 +47,8 @@ class SelectpaymentController extends Controller
     
         // Check if the data is created successfully
         if ($created) {
-            return redirect()->route('users.selectpayment', ['id' => $car->id])
+            $id = $car->id;
+            return redirect()->route('users.selectpayment', compact('id'))
                 ->with('success', 'Car successfully added.');
         } else {
             return redirect()->back()->with('error', 'Failed to add car.');

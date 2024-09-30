@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <h2 class="font-bold text-3xl text-amber-600">Car Details</h2>
-    <hr class="h-1 bg-amber-600">
+    <h2 class="font-bold text-3xl text-center text-gray-800 mt-5">Car Details</h2>
+    <hr class="h-0.5 bg-gray-300 mb-8">
 
     <div class="mt-10 text-right">
         <a href="{{route('cars.create')}}" class="bg-amber-600 text-white p-3 rounded-lg">Add Cars</a>

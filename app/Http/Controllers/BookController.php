@@ -37,6 +37,8 @@ class BookController extends Controller
         
 
         $order = book::create($data);
+        $selectpayment = Selectpayment::find($request->selectpayments_id);
+        $selectpayment->delete();
        
     
 
@@ -113,6 +115,7 @@ public function status($id, $status)
         $message->to($order->user->email, $order->user->name)->subject('Your Order is now ' . $order->status );
     });
 
+ 
     return back()->with('success', 'Order status updated successfully');
 }
 
@@ -137,6 +140,7 @@ public function success(Request $request)
         $booking->paid='paid';
 
         $booking->save();
+        
 
         // Step 4: Send a success message to the user
         return redirect()->route('users.index')->with('success', 'Payment successful! Room booked.');

@@ -1,8 +1,9 @@
 @extends('layouts.user')
 @section('content')
 
-<div class="container mx-auto py-12 mt-14">
-    <h1 class="text-4xl font-bold text-center underline text-blue-800 mb-12">{{ $name ?? 'Your Search Result' }}</h1>
+<div class="container mx-auto py-12 mt-16">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-6">{{ $name ?? 'Your Search Result' }}</h1>
+    <hr class="h-0.5 bg-gray-300 mb-8">
 
     <!-- Display Results -->
     <section class="properties container mx-auto" id="properties">

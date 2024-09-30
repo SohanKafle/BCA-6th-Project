@@ -148,40 +148,48 @@ class UserController extends Controller
             return back()->with('success', 'Your message has been sent successfully!');
         }    
 
-    public function search(Request $request)
-    {
-        // Validate request inputs
-        $validated = $request->validate([
-            'brand' => 'nullable|string|max:255',
-            'min_price' => 'nullable|numeric|min:0',
-            'max_price' => 'nullable|numeric|min:0'
-        ]);
-    
-        // Get authenticated user
-        $user = Auth::user('id'); // Fetching user ID directly
-    
-        // Build the query
-        $query = Car::query();
-    
-        // Apply filters
-        if ($validated['brand']) {
-            $query->where('name', 'LIKE', "%" . $validated['brand'] . "%");
+        public function search(Request $request)
+        {
+            // Validate request inputs
+            $validated = $request->validate([
+                'brand' => 'nullable|string|max:255',
+                'min_price' => 'nullable|numeric|min:0',
+                'max_price' => 'nullable|numeric|min:0',
+                'sort_by' => 'nullable|string|in:price,name',  // Allow sorting by price or name
+                'order' => 'nullable|string|in:asc,desc'       // Ascending or Descending order
+            ]);
+        
+            // Get authenticated user
+            $user = Auth::user();
+        
+            // Build the query
+            $query = Car::query();
+        
+            // Apply filters
+            if (!empty($validated['brand'])) {
+                $query->where('name', 'LIKE', "%" . $validated['brand'] . "%");
+            }
+        
+            if (!empty($validated['min_price'])) {
+                $query->where('price', '>=', $validated['min_price']);
+            }
+        
+            if (!empty($validated['max_price'])) {
+                $query->where('price', '<=', $validated['max_price']);
+            }
+        
+            // Apply sorting
+            $sortBy = $validated['sort_by'] ?? 'price'; // Default sorting by 'price'
+            $order = $validated['order'] ?? 'asc';     // Default order 'asc'
+            $query->orderBy($sortBy, $order);
+        
+            // Execute the query and get filtered results
+            $properties = $query->get();
+        
+            // Return view with the filtered and sorted data
+            return view('users.search', compact('properties', 'user', 'sortBy', 'order'));
         }
-    
-        if ($validated['min_price']) {
-            $query->where('price', '>=', $validated['min_price']);
-        }
-    
-        if ($validated['max_price']) {
-            $query->where('price', '<=', $validated['max_price']);
-        }
-    
-        // Execute the query and get filtered results
-        $properties = $query->get();
-    
-        // Return view with the filtered data
-        return view('users.search', compact('properties', 'user'));
-    }
+        
 
 
     

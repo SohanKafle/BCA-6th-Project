@@ -98,8 +98,8 @@
 </div>
 
 <!-- Related Cars Section -->
-<h1 class="text-3xl font-bold text-center mt-10">Recommended Cars</h1>
-<hr class="h-1 bg-amber-600 mb-8">
+<h1 class="text-3xl font-bold text-center mb-5 mt-10">Recommended Cars</h1>
+<hr class="h-0.5 bg-gray-300 mb-8">
 
 <section class="properties container mx-auto" id="properties">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 px-8">
