@@ -26,20 +26,48 @@
         </script>
 @endif
         <div class="flex bg-gray-100 shadow">
-            <div class="w-56 h-screen bg-gray-100 shadow">
-                <img src="{{ asset('img/adminlogo.png') }}" alt="Admin Logo" class="p-2 m-2 w-10/12 mx-auto mt-5 bg-white rounded-lg shadow-lg ">
-                <div class="mt-5">
-                    <a href="{{route('dashboard')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Dashboard</a>
-                    <a href="{{route('cars.index')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Cars</a>
-                    <a href="{{route('useradmin.index')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Users</a>
-                    <a href="{{route('notification')}}" class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white">Notification</a>
-                   <form id="logout-form" method="post" action="{{route('logout')}}">
-                    @csrf
-                    </form>
-                   <a  href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit() "class="text-xl block pl-4 p-2 m-2 border-b border-amber-600 hover:bg-amber-600 hover:text-white  ">Logout</a>
-                   
+            <div class="w-64 h-screen bg-white shadow-md">
+                <!-- Admin Logo -->
+                <div class="p-4 bg-gray-100">
+                    <img src="{{ asset('img/adminlogo.png') }}" alt="Admin Logo" class="w-3/4 mx-auto p-2 bg-white rounded-lg shadow-md">
                 </div>
+            
+                <!-- Navigation Menu -->
+                <nav class="mt-8">
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ route('dashboard') }}" class="block text-lg font-semibold text-gray-700 hover:text-white hover:bg-amber-500 transition-colors duration-300 p-3 rounded-md mx-3">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('cars.index') }}" class="block text-lg font-semibold text-gray-700 hover:text-white hover:bg-amber-500 transition-colors duration-300 p-3 rounded-md mx-3">
+                                Cars
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('useradmin.index') }}" class="block text-lg font-semibold text-gray-700 hover:text-white hover:bg-amber-500 transition-colors duration-300 p-3 rounded-md mx-3">
+                                Users
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('notification') }}" class="block text-lg font-semibold text-gray-700 hover:text-white hover:bg-amber-500 transition-colors duration-300 p-3 rounded-md mx-3">
+                                Notification
+                            </a>
+                        </li>
+                        <li>
+                            <!-- Logout -->
+                            <form id="logout-form" method="post" action="{{ route('logout') }}" class="inline">
+                                @csrf
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block text-lg font-semibold text-gray-700 hover:text-white hover:bg-amber-500 transition-colors duration-300 p-3 rounded-md mx-3">
+                                    Logout
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+            
             <div class="p-4 flex-1">
                 @yield('content')
             </div>

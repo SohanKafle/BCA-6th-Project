@@ -5,6 +5,7 @@ namespace App\Models\User;
 namespace App\Http\Controllers;
 
 use App\Mail\ContactFormMail;
+use App\Models\book;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -190,7 +191,22 @@ class UserController extends Controller
             return view('users.search', compact('properties', 'user', 'sortBy', 'order'));
         }
         
-
-
+        public function booking()
+        {
+            $user = Auth::user();
+        
+            // Fetch bookings with related car and payment details
+            $cars = book::where('user_id', $user->id)
+                        ->whereHas('car', function ($query) {
+                            $query->where('status', 'booked');
+                        })
+                        ->with(['car'])
+                        ->get();
+        
+            // Pass bookings to the view
+            return view('users.reservations', compact('user', 'cars'));
+        }
+        
+        
     
 }

@@ -47,6 +47,8 @@ class PagesController extends Controller
             'brand' => 'nullable|string|max:255',
             'min_price' => 'required|numeric|min:1', // Required, must be numeric and positive
             'max_price' => 'required|numeric|min:1', // Required, must be numeric and positive
+            'sort_by' => 'nullable|string|in:price,name', // Allow sorting by price or name
+            'order' => 'nullable|string|in:asc,desc' // Ascending or Descending order
         ], [
             // Custom error messages
             'min_price.required' => 'Minimum price is required.',
@@ -55,9 +57,10 @@ class PagesController extends Controller
             'max_price.min' => 'Maximum price must be greater than 0.',
         ]);
     
-        // Get the filtered cars
+        // Build the query
         $query = Car::query();
     
+        // Apply filters
         if ($validated['brand']) {
             $query->where('name', 'LIKE', "%" . $validated['brand'] . "%");
         }
@@ -70,10 +73,17 @@ class PagesController extends Controller
             $query->where('price', '<=', $validated['max_price']);
         }
     
-        $cars = $query->paginate(9); // Paginate the results
+        // Apply sorting
+        $sortBy = $validated['sort_by'] ?? 'price'; // Default sorting by 'price'
+        $order = $validated['order'] ?? 'asc';      // Default order 'asc'
+        $query->orderBy($sortBy, $order);
+    
+        // Paginate the results
+        $cars = $query->paginate(9);
         $properties = $query->get();
-        // Return the view with cars
-        return view('search', compact('cars', 'properties'));
+    
+        // Return the view with the filtered and sorted cars
+        return view('search', compact('cars', 'sortBy', 'order', 'properties'));
     }
     
     

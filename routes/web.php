@@ -37,6 +37,7 @@ Route::get('users/search',[UserController::class,'search'])->name('users.search'
 // Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
 Route::get('users/{id}/selectpayment', [SelectpaymentController::class, 'selectpayment'])->name('users.selectpayment');
 Route::post('users/{id}/store', [SelectpaymentController::class, 'store'])->name('users.store');
+Route::get('users/reservations',[UserController::class,'booking'])->name('users.reservations');
 
 Route::post('users/{id}/stores', [BookController::class, 'stores'])->name('users.stores');
 

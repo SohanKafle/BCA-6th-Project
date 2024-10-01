@@ -12,9 +12,9 @@
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden">
                     <div class="p-6">
                         <h2 class="text-xl font-semibold text-gray-900 mb-3">
-                            {{ $booking->user->name }} booked Car {{ $booking->car->no }}
+                            {{ $booking->user->name }} booked a Car {{ $booking->car->no }}
                         </h2>
-                        <p class="text-sm text-gray-700 mb-4">Booking Status: <span class="font-medium">{{ $booking->status }}</span></p>
+                        <p class="text-sm font-medium text-gray-800 mb-4">Booking Status: <span class="font-medium text-green-500">{{ $booking->status }}</span></p>
                         <div class="flex justify-between items-center mt-5">
                             <span class="text-sm font-medium text-blue-600">{{ $booking->created_at->diffForHumans() }}</span>
                         </div>
@@ -27,7 +27,7 @@
         </div>
     @else
         <div class="mt-20">
-            <p class="text-gray-700 text-center text-xl">No Booking History Found.</p>
+            <p class="text-red-700 text-center font-semibold text-xl">No Booking History Found.</p>
         </div>
     @endif
 </div>

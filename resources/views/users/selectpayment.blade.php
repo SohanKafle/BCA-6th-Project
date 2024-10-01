@@ -4,7 +4,7 @@
 
 <div class="container mx-auto p-8 bg-white rounded-lg shadow-xl flex flex-col lg:flex-row gap-8 mt-14">
 
-    <!-- Payment Method Selection Form and Booking Details in the same div -->
+    <!-- Booking Details and Payment Method Selection Form -->
     <div class="w-full flex flex-col lg:flex-row gap-8">
 
         <!-- Left Side: Booking Details -->
@@ -18,29 +18,34 @@
             </div>
 
             <!-- Car Details -->
-            @if($selectpayments->count() > 0)
-                @foreach($selectpayments as $payment)
-                    @if($payment->car_id == $car->id) <!-- Ensure this is the current car -->
-                        <div class="flex items-center gap-6 mt-4">
-                            <img src="{{ asset($payment->photopath) }}" alt="Car Image" class="w-40 h-40 object-contain rounded-lg shadow-md"> <!-- Ensure image is fully visible -->
-                            <div>
-                                <p class="text-xl font-semibold text-gray-800">{{ $car->name }}</p> <!-- Display current car name -->
-                                <p class="text-lg text-gray-600">Price: <span class="text-green-500 font-semibold">Rs {{ number_format($car->price) }}</span></p> <!-- Display current price -->
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            @else
-                <p class="text-lg text-gray-600">No payment information available for this booking.</p>
-            @endif
+            <div class="flex items-center gap-6">
+                <img src="{{ asset($car->photopath) }}" alt="Car Image" class="w-40 h-40 object-contain rounded-lg shadow-md">
+                <div>
+                    <p class="text-xl font-semibold text-gray-800">{{ $car->name }}</p>
+                    <p class="text-lg text-gray-600">Price per day: <span class="text-green-500 font-semibold">Rs {{ number_format($car->price) }}</span></p>
+
+                    <!-- Total Price Calculation -->
+                    @php
+                        $duration = \Carbon\Carbon::parse($selectpayments->first()->start_date)->diffInDays($selectpayments->first()->end_date) + 1;
+                        $totalPrice = $duration * $car->price;
+                    @endphp
+                    <p class="text-lg font-semibold text-gray-600 mt-2">Total Price for {{ $duration }} days: <span class="text-green-500 font-semibold">Rs {{ number_format($totalPrice) }}</span></p>
+                </div>
+            </div>
+
+            <!-- Booking Dates -->
+            <div class="mt-4">
+                <p class="text-lg text-gray-600">Start Date: {{ \Carbon\Carbon::parse($selectpayments->first()->start_date)->toFormattedDateString() }}</p>
+                <p class="text-lg text-gray-600">End Date: {{ \Carbon\Carbon::parse($selectpayments->first()->end_date)->toFormattedDateString() }}</p>
+            </div>
         </div>
 
-        <!-- Right Side: Payment Method Selection Form -->
+        <!-- Right Side: Payment Method Selection -->
         <div class="w-full lg:w-1/2 bg-gray-50 p-6 rounded-lg shadow-md">
             <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Select Payment Method</h1>
 
-            <!-- Payment Method Selection -->
-            <form action="{{route('users.stores',$car->id)}}" method="POST">
+            <!-- Payment Method Selection Form -->
+            <form action="{{ route('users.stores', $car->id) }}" method="POST">
                 @csrf
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Choose a Payment Method</h2>
 
@@ -60,16 +65,12 @@
                             </span>
                         </label>
                     @endforeach
-                </div> 
+                </div>
 
                 <div class="mt-6 text-center">
-                    <!-- Ensure $payment is correctly referenced -->
+                    <!-- Ensure $selectpayments is correctly referenced -->
                     @if($selectpayments->count() > 0)
-                        @foreach($selectpayments as $payment)
-                            @if($payment->car_id == $car->id)
-                                <input type="hidden" name="selectpayments_id" value="{{ $payment->id }}">
-                            @endif
-                        @endforeach
+                        <input type="hidden" name="selectpayments_id" value="{{ $selectpayments->first()->id }}">
                     @endif
 
                     <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">

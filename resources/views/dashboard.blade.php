@@ -46,8 +46,8 @@
 <!-- Include Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<!-- Line Chart for Booking Trends -->
 <script>
-    // Line Chart for Booking Trends
     const ctxLine = document.getElementById('line-chart').getContext('2d');
     const monthlyUserGrowth = JSON.parse('{!! json_encode($monthlyUserGrowth) !!}');
     const lineChart = new Chart(ctxLine, {
@@ -57,8 +57,8 @@
             datasets: [{
                 label: 'Bookings',
                 data: Object.values(monthlyUserGrowth),
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(93, 173, 226, 0.2)', // Light blue background
+                borderColor: 'rgba(52, 152, 219, 1)', // Deep blue border
                 borderWidth: 2,
                 tension: 0.4, // Add smooth curve
                 fill: true
@@ -99,22 +99,22 @@
                 label: 'Visits',
                 data: Object.values(visitedUsersPerDay),
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 206, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(153, 102, 255, 0.7)',
-                    'rgba(255, 159, 64, 0.7)',
-                    'rgba(201, 203, 207, 0.7)',
+                    'rgba(52, 152, 219, 0.7)',  // Deep blue
+                    'rgba(155, 89, 182, 0.7)',  // Purple
+                    'rgba(241, 196, 15, 0.7)',  // Yellow
+                    'rgba(39, 174, 96, 0.7)',   // Green
+                    'rgba(231, 76, 60, 0.7)',   // Red
+                    'rgba(243, 156, 18, 0.7)',  // Orange
+                    'rgba(127, 140, 141, 0.7)', // Gray
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(201, 203, 207, 1)',
+                    'rgba(52, 152, 219, 1)',
+                    'rgba(155, 89, 182, 1)',
+                    'rgba(241, 196, 15, 1)',
+                    'rgba(39, 174, 96, 1)',
+                    'rgba(231, 76, 60, 1)',
+                    'rgba(243, 156, 18, 1)',
+                    'rgba(127, 140, 141, 1)',
                 ],
                 borderWidth: 1
             }]
@@ -129,4 +129,5 @@
         }
     });
 </script>
+
 @endsection

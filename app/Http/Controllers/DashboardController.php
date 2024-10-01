@@ -18,59 +18,56 @@ class DashboardController extends Controller
         // Get total number of cars
         $totalCars = Car::count();
 
+        // Get available cars
         $availableCars = Car::where('availability', '>', 0)->count();
 
-        // Calculate booked cars (assumes cars with availability = 0 are booked)
-        $bookedCars = Car::where('availability', 0)->count();
+        // Calculate booked cars (using the bookings table, assuming status 'booked' tracks bookings)
+        $bookedCars = Book::where('status', 'booked')->count();
 
-        // Assuming total visits is fetched from a static or external source
-        $totalVisits = 30000; // Replace this with actual logic if needed
+        // Assuming total visits are fetched from logs or another table (adjust as needed)
+        $totalVisits = 30; // Replace 'visits' with the actual column in your DB
 
-        // $bookingData = Car::selectRaw('MONTH(created_at) as month, COUNT(*) as bookings')
-        //     ->groupBy('month')
-        //     ->pluck('bookings')->toArray();
+        // Monthly user growth (grouping by month of registration)
+        $monthlyUserGrowth = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('count', 'month')->toArray();
 
-        // // Fetch car types (or categories) and their counts
-        // $carTypes = Car::select('name as type')
-        //     ->groupBy('type')
-        //     ->pluck('type')->toArray();
+        // Ensure all months are represented (1 to 12)
+        $monthlyUserGrowth = array_replace(array_fill(1, 12, 0), $monthlyUserGrowth);
 
-        // $carCounts = Car::selectRaw('name as type, COUNT(*) as count')
-        //     ->groupBy('type')
-        //     ->pluck('count')->toArray();
+        // Total visited users per day (replace 'visits' with actual logic/column for tracking visits)
+        $visitedUsersPerDay = Car::selectRaw('DATE(created_at) as date, COUNT(*) as total_visits')
+            ->groupBy('date')
+            ->orderBy('date', 'desc')
+            ->pluck('total_visits', 'date')->toArray();
 
-                // Monthly user growth
-                $monthlyUserGrowth = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
-                ->groupBy('month')
-                ->orderBy('month')
-                ->pluck('count', 'month')->toArray();
-    
-            // Ensure the monthly data has all months represented (1 to 12)
-            $monthlyUserGrowth = array_replace(array_fill(1, 12, 0), $monthlyUserGrowth);
-    
-            // Total visited users per day
-            $visitedUsersPerDay = Car::selectRaw('DATE(created_at) as date, COUNT(*) as total_visits')
-                ->groupBy('date')
-                ->orderBy('date', 'desc')
-                ->pluck('total_visits', 'date')->toArray();
-
-        return view('dashboard', compact('totalUsers', 'totalCars', 'availableCars', 'bookedCars', 'totalVisits', 'monthlyUserGrowth',
-            'visitedUsersPerDay'));
+        return view('dashboard', compact(
+            'totalUsers', 
+            'totalCars', 
+            'availableCars', 
+            'bookedCars', 
+            'totalVisits', 
+            'monthlyUserGrowth', 
+            'visitedUsersPerDay'
+        ));
     }
 
     public function notification()
     {
-       $notifications = book::with('car', 'user')->where('status', 'booked')->get();
+        // Fetch notifications related to booked cars
+        $notifications = Book::with('car', 'user')
+            ->where('status', 'booked')
+            ->get();
 
-        return view('notification' , compact('notifications'));
-       
+        return view('notification', compact('notifications'));
     }
+
     public function view($id)
     {
-        $notifications = book::with('car', 'user')->findOrFail($id);
+        // View a specific booking's details
+        $notification = Book::with('car', 'user')->findOrFail($id);
 
-        return view('view', compact('notification',compact('notificcations') ));
+        return view('view', compact('notification'));
     }
-
-
 }
