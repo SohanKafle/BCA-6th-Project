@@ -67,7 +67,7 @@
                         <button type="submit" id="submit_button" disabled class="text-white bg-blue-500 p-3 w-full rounded-lg font-bold hover:bg-blue-700 shadow-xl hover:shadow-none disabled:opacity-50">
                             Book Now
                         </button>
-                        <!-- Cancel Button -->
+                        
                         <button type="button" onclick="history.back()" class="text-white bg-red-500 p-3 w-full rounded-lg font-bold hover:bg-red-700 shadow-xl hover:shadow-none">
                             Cancel
                         </button>

@@ -2,8 +2,8 @@
 @section('content')
 
 <div class="container px-4 py-8 mt-24">
-    <h2 class="font-bold text-4xl text-amber-600 mb-6 text-center">User Profile</h2>
-    <hr class="h-1 bg-amber-600 mb-8">
+    <h2 class="font-bold text-4xl text-gray-800 mb-6 text-center">User Profile</h2>
+    <hr class="h-1 bg-gray-300 mb-8">
 
     <!-- Profile Card Section -->
     <div class="bg-white border border-gray-200 rounded-2xl shadow-lg max-w-xl mx-auto p-8">

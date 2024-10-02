@@ -20,26 +20,26 @@ class SelectpaymentController extends Controller
         ]);
     
         // Fetch the car details using the provided car_id
-        $car = Car::findOrFail($data['car_id']); // Ensure the car exists
-        $user = auth()->user(); // Get the authenticated user
+        $car = Car::findOrFail($data['car_id']); 
+        $user = auth()->user(); 
     
         // Calculate the duration and total price
         $startDate = Carbon::parse($data['start_date']);
         $endDate = Carbon::parse($data['end_date']);
-        $duration = $startDate->diffInDays($endDate) + 1; // Calculate the rental duration
-        $totalPrice = $duration * $car->price; // Calculate the total price
+        $duration = $startDate->diffInDays($endDate) + 1; 
+        $totalPrice = $duration * $car->price; 
     
         // Prepare data for payment selection
         $selectpaymentdata = [
-            'user_id' => $user->id, // User ID
-            'name' => $user->name,  // User name
-            'email' => $user->email, // User email
-            'car_id' => $car->id, // car ID
-            'car_name' => $car->name, // car name
-            'price' => $totalPrice, // calculated total price
-            'photopath' => $car->photopath, // car photo path
-            'start_date' => $startDate, // Start date for the booking
-            'end_date' => $endDate, // End date for the booking
+            'user_id' => $user->id, 
+            'name' => $user->name,  
+            'email' => $user->email, 
+            'car_id' => $car->id, 
+            'car_name' => $car->name, 
+            'price' => $totalPrice, 
+            'photopath' => $car->photopath, 
+            'start_date' => $startDate, 
+            'end_date' => $endDate, 
         ];
     
         // Insert into the selectpayments table

@@ -28,18 +28,50 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Custom validation rule for email
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users,email',
+                'regex:/^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', // Ensures email starts with a letter, and domain/TLD are valid
+                function ($attribute, $value, $fail) {
+                    $parts = explode('@', $value); // Split email into local and domain parts
+                    $localPart = $parts[0];
+                    $domainParts = explode('.', $parts[1]); // Split domain into subdomain and TLD
+    
+                    if (is_numeric($localPart)) {
+                        $fail('The email local part (before @) cannot be entirely numeric.');
+                    }
+    
+                    if (is_numeric($domainParts[0])) {
+                        $fail('The email domain cannot be entirely numeric.');
+                    }
+    
+                    if (is_numeric($domainParts[count($domainParts) - 1])) {
+                        $fail('The email TLD (after last dot) cannot be numeric.');
+                    }
+                }
+            ],
             'phonenumber' => ['required', 'integer'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'photopath' => ['nullable', 'image'],
             'terms' => ['accepted'],
+        ], [
+            'email.regex' => 'The email format is invalid or the domain/TLD cannot be numeric.',
         ]);
-
-        $photoname = time() . '.' . $request->photopath->extension();
-        $request->photopath->move(public_path('uploads/users'), $photoname);
-
+    
+        // Handle file upload for the photo
+        $photoname = null;
+        if ($request->hasFile('photopath')) {
+            $photoname = time() . '.' . $request->photopath->extension();
+            $request->photopath->move(public_path('uploads/users'), $photoname);
+        }
+    
+        // Create new user with validated data
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -47,11 +79,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'photopath' => $photoname,
         ]);
-
+    
+        // Fire the Registered event
         event(new Registered($user));
-        
-
+    
         // Redirect to the login page after successful registration
         return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
     }
+    
+    
 }

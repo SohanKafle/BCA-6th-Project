@@ -5,7 +5,7 @@
     <!-- Check if there are any bookings -->
     @if($cars->isNotEmpty())
         <!-- Section Title -->
-        <div class="flex justify-between items-center mb-12 ">
+        <div class="flex justify-between items-center mb-12">
             <h2 class="text-4xl font-bold text-gray-900 border-b-4 border-blue-600 px-3 pb-3 mt-16">Your Reservations</h2>
         </div>
 
@@ -22,12 +22,21 @@
                     <div class="p-6">
                         <!-- Car Details -->
                         <h2 class="text-2xl font-semibold text-gray-900 mb-3">Car No: {{ $car->car->car_no }}</h2>
-                        <h2 class="text-lg text-gray-800 mb-4"> <span class="font-bold">{{ $car->car->name }}</span></h2>
+                        <h2 class="text-lg text-gray-800 mb-4"><span class="font-bold">{{ $car->car->name }}</span></h2>
                         
                         <!-- Booking Details -->
-                      
                         <p class="text-sm text-gray-800 mb-2">Status: <span class="font-semibold text-xl text-green-600">{{ ucfirst($car->status) }}</span></p>
 
+                        <!-- Display Start Date, End Date, and Duration -->
+                        <p class="text-sm text-gray-800 mb-2">Start Date: <span class="font-medium">{{ \Carbon\Carbon::parse($car->start_date)->format('d M Y') }}</span></p>
+                        <p class="text-sm text-gray-800 mb-2">End Date: <span class="font-medium">{{ \Carbon\Carbon::parse($car->end_date)->format('d M Y') }}</span></p>
+
+                        @php
+                            $startDate = \Carbon\Carbon::parse($car->start_date);
+                            $endDate = \Carbon\Carbon::parse($car->end_date);
+                            $duration = $startDate->diffInDays($endDate) + 1; // Include the end date as part of the duration
+                        @endphp
+                        <p class="text-sm text-gray-800 mb-4">Duration: <span class="font-medium">{{ $duration }} days</span></p>
 
                         <!-- Price and Action Button -->
                         <div class="flex justify-between items-center mt-6">

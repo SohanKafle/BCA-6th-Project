@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\book;
 use App\Models\Car;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -70,4 +71,18 @@ class DashboardController extends Controller
 
         return view('view', compact('notification'));
     }
+
+    public function viewDetails($id)
+    {
+        $booking = Book::with('car', 'user')->findOrFail($id);
+    
+        // Convert string dates to Carbon instances
+        $booking->created_at = Carbon::parse($booking->created_at);
+        $booking->start_date = \Carbon\Carbon::parse($booking->start_date);
+        $booking->end_date = \Carbon\Carbon::parse($booking->end_date);
+    
+        return view('viewbookingdetails', compact('booking'));
+    }
 }
+
+

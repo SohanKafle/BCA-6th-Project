@@ -1,5 +1,7 @@
-@extends('layouts.user')
+{{-- Yo paxi implement grna lai rakhya hai just a test --}}
 
+
+@extends('layouts.user')
 @section('content')
     <div class="container mx-auto p-6">
         <h2 class="text-2xl font-bold mb-6">Your Bookings</h2>
