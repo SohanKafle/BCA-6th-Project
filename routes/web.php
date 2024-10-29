@@ -58,7 +58,6 @@ Route::delete('useradmin/delete/{id}',[UseradminController::class,'delete'])->na
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/notification',[DashboardController::class,'notification'])->name('notification');
-    // Route::get('/notification/{id}',[DashboardController::class,'view'])->name('notification.view');
     Route::get('/cars/index',[CarController::class,'index'])->name('cars.index');
     Route::get('/cars/create',[CarController::class,'create'])->name('cars.create');
     Route::post('/cars/store',[CarController::class,'store'])->name('cars.store');
@@ -67,9 +66,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('/cars/{id}/delete',[CarController::class,'delete'])->name('cars.delete');
     Route::get('/cars/{id}/view', [CarController::class, 'show'])->name('cars.view');
     Route::get('/notifications/{id}', [DashboardController::class, 'viewDetails'])->name('notifications.details');
-
-
-    
+ 
 });
 
     
