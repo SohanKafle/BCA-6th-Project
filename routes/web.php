@@ -69,8 +69,6 @@ Route::middleware(['auth','admin'])->group(function () {
  
 });
 
-    
-
 // Route::get('/dashboard', function () {
     
 //     return view('dashboard');
